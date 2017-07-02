@@ -1,6 +1,3 @@
-#chmod +x install.sh
-#./install.sh
-#
 #!/bin/bash
 apt-get update
 apt-get dist-upgrade
