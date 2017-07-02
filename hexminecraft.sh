@@ -5,7 +5,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get update
 
 # download the necessary prerequisite components for mineos
-apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-7-jre-headless
+apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-8-jre-headless
 
 # download the most recent mineos web-ui files from github
 mkdir -p /usr/games
