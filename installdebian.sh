@@ -2,7 +2,7 @@
 #
 #
 #
-apt-get update
+cd ~
 mkdir downloads
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
 apt-get install -f
