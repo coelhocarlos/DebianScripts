@@ -12,7 +12,7 @@
 #http://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-8.7.1-i386-netinst.iso
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
 
-#SECOUND WEBMIN 
+echo SECOUND WEBMIN 
 #-----------------------------------------
 
 #in terminal server
@@ -20,10 +20,10 @@
 apt-get update
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
 dpkg --install webmin_1.850_all.deb
-on error fault -> libraries ->
+#on error fault -> libraries ->
 apt-get install -f
 
-#THIRDY PHP MYSQL APACHE NMAP SAMBA
+echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 #----------------------------------------------------------------------
 
 apt-get update install
@@ -34,7 +34,7 @@ apt-get install phpmyadmin
 apt-get install nmap
 apt-get install samba
 
-#FOUR MINECRAFT HEXPARROT
+echo FOUR MINECRAFT HEXPARROT
 #------------------------------------------------------------------------------clear
 
 
