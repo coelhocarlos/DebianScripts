@@ -3,8 +3,8 @@ apt-get update
 apt-get dist-upgrade
 mkdir downloads
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
-apt-get install -f
-echo WEBMIN INSTALADO COM SUCESSO ----
+apt-get install -f ,
+echo WEBMIN INSTALADO COM SUCESSO 
 echo.
 echo..
 echo...
