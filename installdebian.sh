@@ -1,14 +1,11 @@
 #!/bin/sh
+#
+#
+#
 apt-get update
-apt-get dist-upgrade
 mkdir downloads
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
-apt-get install -f ,
-echo WEBMIN INSTALADO COM SUCESSO 
-echo.
-echo..
-echo...
-echo INSTALANDO WEB APPS
+apt-get install -f
 apt-get update  install
 apt-get install apache2 
 apt-get install php7.0 
@@ -16,7 +13,6 @@ apt-get install mysql-server
 apt-get install phpmyadmin 
 apt-get install nmap 
 apt-get install samba 
-echo INSTALANDO MINECRAFT 
 # update repositories
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get update
