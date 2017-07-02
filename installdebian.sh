@@ -1,4 +1,4 @@
-#INSTALL LINUX DEBIAN  WEBMIN APACHE MYSQL-SERVER PHPMYADMIN NMAP  MINECRAFT 
+#INSTALL LINUX DEBIAN  WEBMIN APACHE MYSQL-SERVER PHPMYADMIN NMAP  HEXPARROT MINECRAFT 
 #-----------------------------------------------------------------------------------------------------------------
 #Original Distro MInecraft file Carlos Coelho 2017 - Zer0
 #-----------------------------------------------------------------------------------------------------------------
@@ -15,15 +15,16 @@
 #SECOUND WEBMIN 
 #-----------------------------------------
 
-in terminal server
+#in terminal server
+#----------------------------------------------------------------------
 apt-get update
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb
-dpkg --install webmin_1.831_all.deb
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
+dpkg --install webmin_1.850_all.deb
 on error fault -> libraries ->
 apt-get install -f
 
 #THIRDY PHP MYSQL APACHE NMAP SAMBA
-#-----------------------------------
+#----------------------------------------------------------------------
 
 apt-get update install
 apt-get install apache2
@@ -34,7 +35,10 @@ apt-get install nmap
 apt-get install samba
 
 #FOUR MINECRAFT HEXPARROT
-#-----------------------------------------
+#------------------------------------------------------------------------------clear
+
+
+
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
 #-----------------------------------------
 apt-get update
@@ -45,7 +49,7 @@ curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get update
 
 # download the necessary prerequisite components for mineos
-apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-7-jre-headless
+apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-8-jre-headless
 
 # download the most recent mineos web-ui files from github
 mkdir -p /usr/games
@@ -77,16 +81,16 @@ mv linux-x64-debian-7-0 linux-x64-debian-7-0.tar.gz
 tar -zxvf linux-x64-debian-7-0.tar.gz -C /opt/
 chown root:root -R /opt/utorrent-server-alpha-v3_3/
 ln -s /opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
-apt-get install libssl1.0.0 libssl-dev
-for debian stretch
-$ wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
-# dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+# apt-get install libssl1.0.0 libssl-dev original squeze
+# for debian stretch
+wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 #--------------------------
 #INIT AS SERVICE UTORRENT
 #--------------------
 
-wget https://pastebin.com/raw/GZwVSH6D
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/utorrent
 chmod 755 utorrent
 cp utorrent /etc/init.d/
 cd /etc/init.d/
