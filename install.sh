@@ -1,223 +1,311 @@
+#chmod +x install.sh
+#./install.sh
+#
 #!/bin/bash
-trap ' ' 2
-onstate="0"
-ipvps=`wget http://ipecho.net/plain -O - -q ; echo`
-sudo apt-get install nano -y
-sudo apt-get insstal curl -y
-sudo apt-get install chmod -y
-sudo apt-get install dpkg -y
-# ================================================================================​==
-# ================== Places Function you need ======================================
-# 1===
-funct_update()
+apt-get update
+apt-get dist-upgrade -y
+
+
+echo INSTALANDO WEBMIN
+
+mkdir downloads
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
+apt-get install -f
+
+echo WEBMIN INSTALADO COM SUCESSO ----
+echo.
+echo..
+echo...
+echo INSTALANDO WEB APPS
+apt-get update  install
+apt-get install apache2 
+apt-get install php7.0 
+apt-get install mysql-server 
+apt-get install phpmyadmin
+apt-get install nmap 
+apt-get install samba 
+
+echo INSTALANDO MINECRAFT 
+
+# update repositories
+curl -sL https://deb.nodesource.com/setup_4.x | bash -
+apt-get update
+# download the necessary prerequisite components for mineos
+apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-7-jre-headless
+# download the most recent mineos web-ui files from github
+mkdir -p /usr/games
+cd /usr/games
+git clone https://github.com/hexparrot/mineos-node.git minecraft
+cd minecraft
+git config core.filemode false
+chmod +x service.js mineos_console.js generate-sslcert.sh webui.js
+ln -s /usr/games/minecraft/mineos_console.js /usr/local/bin/mineos
+cp mineos.conf /etc/mineos.conf
+npm install
+# distribute service related files
+cp init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
+# generate self-signed certificate
+./generate-sslcert.sh
+# start the background service
+supervisorctl reload
+echo MINECRAFT INSTALADO COM SUCESSO 
+echo.
+echo..
+echo...
+echo INSTALANDO UTORRENT
+apt-get update
+mkdir downloads
+cd downloads
+wgte http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-debian-7-0
+mv linux-x64-debian-7-0 linux-x64-debian-7-0.tar.gz
+tar -zxvf linux-x64-debian-7-0.tar.gz -C /opt/
+chown root:root -R /opt/utorrent-server-alpha-v3_3/
+ln -s /opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
+apt-get install libssl1.0.0 libssl-dev
+for debian stretch
+wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
+### BEGIN INIT INFO
+# Provides:          rtorrent_autostart
+# Required-Start:    $local_fs $remote_fs $network $syslog $netdaemons
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: rtorrent script using screen(1)
+# Description:       rtorrent script using screen(1) to keep torrents working without the user logging in
+### END INIT INFO
+#
+#
+# Original source: http://forum.utorrent.com/viewtopic.php?id=88044
+#
+# uTorrent start stop service script
+#
+# copy to /etc/init.d
+# run "update-rc.d utorrent defaults" to install
+# run "update-rc.d utorrent remove" to remove
+#
+#
+# version 2 improvments by:
+# @author FanFan Huang (kaboom05+utorrentscript@gmail.com)
+#
+#
+UTORRENT_PATH=/opt/utorrent-server-alpha-v3_3/ #where you extracted your utserver executable
+LOGFILE=/opt/utorrent-server-alpha-v3_3/utorrent.log #must be a writable directory
+USER=root #any user account you can create the utorrent user if you like
+GROUP=users
+NICE=15
+SCRIPTNAME=/etc/init.d/utorrent #must match this file name
+ 
+DESC="uTorrent Server for Linux"
+CHDIR=$UTORRENT_PATH
+NAME=utserver
+UT_SETTINGS=$UTORRENT_PATH
+UT_LOG=$LOGFILE
+ 
+DAEMON_ARGS="-settingspath ${UT_SETTINGS} -logfile ${UT_LOG}"
+DAEMON=$CHDIR/$NAME
+PIDFILE=/var/run/utorrent.pid
+STOP_TIMEOUT=5
+INIT_VERBOSE=yes
+ 
+FAILURE=false
+ 
+# Exit if the package is not installed
+[ -x "$DAEMON" ] || exit 0
+ 
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+ 
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+ 
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.0-6) to ensure that this file is present.
+. /lib/lsb/init-functions
+ 
+#
+# Function that starts the daemon/service
+#
+do_start()
 {
-sudo apt-get update -y
-}
-# 2===
-funct_upgrade()
-{
-sudo apt-get upgrade -y
-}
-# 3===
-funct_webmin()
-{
-sudo echo 'deb http://download.webmin.com/download/repository sarge contrib' >> /etc/apt/sources.list
-sudo echo 'deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib' >> /etc/apt/sources.list
-wget http://www.webmin.com/jcameron-key.asc
-sudo apt-key add jcameron-key.asc
-sudo apt-get update -y
-sudo apt-get install webmin -y
-sudo echo '/bin/false' >> /etc/shells
-funct_update
-}
-# 4===
-funct_openssh()
-{
-sudo sed -i 's/#Port 22/Port 22/g' /etc/ssh/sshd_config
-sudo sed -i 's/# Port 22/Port 60000/g' /etc/ssh/sshd_config
-# ===
-sudo sed -i '/^Port 22/ s:$:\nPort 109:' /etc/ssh/sshd_config
-sudo sed -i '/^Port 22/ s:$:\nPort 53:' /etc/ssh/sshd_config
-}
-# 5===
-funct_apache()
-{
-sudo sed -i 's/NameVirtualHost *:80/NameVirtualHost *:88/g' /etc/apache2/ports.conf
-sudo sed -i 's/Listen 80/Listen 88/g' /etc/apache2/ports.conf
-sudo service apache2 restart
-}
-# 6===
-funct_dropbear()
-{
-sudo apt-get install dropbear -y
-# ===
-sudo sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sudo sed -i 's/DROPBEAR_PORT=22/# DROPBEAR_PORT=22/g' /etc/default/dropbear
-sudo sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 7788"/g' /etc/default/dropbear
-}
-# 7===
-funct_squid()
-{
-sudo apt-get install squid3 -y
-sudo echo 'acl server1 dst '$ipvps'-'$ipvps'/255.255.255.255' >> /etc/squid3/squid.conf
-sudo echo 'http_access allow server1' >> /etc/squid3/squid.conf
-sudo echo 'http_port 80' >> /etc/squid3/squid.conf
-sudo echo 'http_port 8080' >> /etc/squid3/squid.conf
-sudo echo 'http_port 8000' >> /etc/squid3/squid.conf
-# ===
-sudo echo 'forwarded_for off' >> /etc/squid3/squid.conf
-sudo echo 'visible_hostname server1' >> /etc/squid3/squid.conf
-}
-# 8===
-funct_openvpn()
-{
-echo -e "Script un-config yet \n"
-}
-# 9===
-funct_badvpn()
-{
-echo -e "Script un-config yet \n"
-}
-# 10===
-funct_pptpvpn()
-{
-sudo apt-get install pptpd -y
-sudo echo 'localip '$ipvps >> /etc/pptpd.conf
-sudo echo 'remoteip 10.10.0.1-200' >> /etc/pptpd.conf
-sudo echo 'ms-dns 8.8.8.8' >> /etc/ppp/pptpd-options
-sudo echo 'ms-dns 8.8.4.4' >> /etc/ppp/pptpd-options
-# === add user pptp
-sudo echo '#username[tabkey]*[tabkey]password[tabkey]*' >> /etc/ppp/chap-secrets
-sudo echo '#myusername    *    mypassword    *' >> /etc/ppp/chap-secrets
-# === 
-sudo echo 'ifconfig $1 mtu 1400' >> /etc/ppp/ip-up
-# ===
-sudo iptables -t nat -A POSTROUTING -s 10.10.0.0/24 -o venet0 -j SNAT --to $ipvps
-sudo iptables -t nat -A POSTROUTING -j SNAT --to-source $ipvps
-# ===
-sudo sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' >> /etc/sysctl.conf
-sudo sysctl -p
-# === 
-echo -e '\n'
-echo -e 'default user have been create as :'
-echo -e 'username = myusername'
-echo -e 'password = mypassword \n'
-echo -e 'edit "/etc/ppp/chap-secrets" to adduser more \n'
-echo -e 'Continue \c'
-}
-# 11===
-funct_softvpn()
-{
-sudo apt-get update -y
-sudo apt-get install build-essential -y
-sudo tar zxf http://citylan.dl.sourceforge.net/project/vpsmanagement/softether-64bit.tar.gz
-sudo cd vpnserver
-sudo make
-sudo cd ..
-sudo mv vpnserver /usr/local
-sudo cd /usr/local/vpnserver/
-sudo chmod 600 *
-sudo chmod 700 vpncmd
-sudo chmod 700 vpnserver
-}
-# 12===
-funct_fail2ban()
-{
-echo -e "Script un-config yet \n"
-}
-# 13===
-funct_userlogin()
-{
-sudo curl -s http://jaist.dl.sourceforge.net/project/vpsmanagement/user-login.sh > user-login.sh
-sudo chmod +x user-login.sh
-}
-# 14===
-funct_speedtest()
-{
-sudo apt-get install python -y
-wget https://github.com/sivel/speedtest-cli/raw/master/speedtest_cli.py
-sudo chmod a+rx speedtest_cli.py
-}
-# 15===
-funct_setall()
-{
-funct_update
-funct_upgrade
-funct_webmin
-funct_openssh
-funct_apache
-funct_dropbear
-funct_squid
-funct_openvpn
-funct_badvpn
-funct_pptpvpn
-funct_fail2ban
-funct_userlogin
-funct_speedtest
-funct_react
-}
-# 16===
-funct_react()
-{
-sudo service apache2 restart
-sudo service squid3 restart
-sudo service ssh restart
-sudo service dropbear restart
-sudo service webmin restart
-sudo pptpd restart
-sudo ./user-login.sh
-sudo python speedtest_cli.py --share
-sudo netstat -ntlp
-}
-# AUTO SCRIPT DEBIAN ==
-clear
-while true
-do
-  onstate="1"
-  clear
-  echo "=============================================="
-  echo "         DEBIAN-UBUNTU VPS MANAGEMENT         "
-  echo "=============================================="
-  echo " 1. Update"
-  echo " 2. Upgrade"
-  echo " 3. Install Webmin"
-  echo " 4. Managed Port OpenSSH"
-  echo " 5. Managed Port Apache2"
-  echo " 6. Install and Managed Port Dropbear"
-  echo " 7. Install and Managed Squid3"
-  echo " 8. Install and Managed OPEN VPN"
-  echo " 9. Install and Managed BAD VPN"
-  echo "10. Install and Managed PPTP VPN"
-  echo "11. Install and Managed VPN Server/Softether"
-  echo "12. Install and Managed Fail2Ban"
-  echo "13. Add Script User-Login"
-  echo "14. Add Speedtest-CLI"
-  echo "=========================================="
-  echo "15. Setup All in One"
-  echo "16. Restart and Activated All Managed"
-  echo "17. Exit"
-  echo -e "\n"
-  echo -e "Type number choice : \c"
-  read choice
-  case "$choice" in
-    1) funct_update ;;
-    2) funct_upgrade ;;
-    3) funct_webmin ;;
-    4) funct_openssh ;;
-    5) funct_apache ;;
-    6) funct_dropbear ;;
-    7) funct_squid ;;
-    8) funct_openvpn ;;
-    9) funct_badvpn ;;
-   10) funct_pptpvpn ;;
-   11) funct_softvpn ;;
-   12) funct_fail2ban ;;
-   13) funct_userlogin ;;
-   14) funct_speedtest ;;
-   15) funct_setall ;;
-   16) funct_react ;;
-   17) exit ;;
-  esac
-  echo -e 'Enter return to Continue \c'
-  read input
+FAILURE=false
+# Return
+# 0 if daemon has been started
+# 1 if daemon was already running
+# 2 if daemon could not be started
+# 3 if port bind failed
+start-stop-daemon --start --nicelevel $NICE --quiet --make-pidfile --pidfile $PIDFILE --chuid $USER:$GROUP --chdir $CHDIR --background --exec $DAEMON --test > /dev/null
+if [ "$?" = "1" ]; then
+return 1
+fi
+start-stop-daemon --start --nicelevel $NICE --quiet --make-pidfile --pidfile $PIDFILE --chuid $USER:$GROUP --chdir $CHDIR --background --exec $DAEMON -- $DAEMON_ARGS
+if [ "$?" != "0" ]; then
+return 2
+fi
+#bind validation
+while [ ! -e $LOGFILE ]; do
+sleep 1 #Wait for file to be generated
 done
+ 
+######################## DISABLED ENABLE THIS SECTION IF YOU HAVE IPv6 HANGS WITH NO IPv6 Support ################
+# while [ ! -n "$(cat $LOGFILE|grep 'IPv6 is installed')" ]; do
+# #wait until utorrent has finished bootup (IPv6 MESSAGE is the last message)#
+# sleep 1
+# done
+ 
+RESULT=$(cat $LOGFILE|grep 'bind failed')
+if [ -n "$RESULT" ]; then
+return 3
+fi
+return 0
+}
+ 
+#
+# Function that stops the daemon/service
+#
+do_stop()
+{
+# Return
+# 0 if daemon has been stopped
+# 1 if daemon was already stopped
+# 2 if daemon could not be stopped
+# other if a failure occurred
+start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
+RETVAL="$?"
+if [ "$RETVAL" = 2 ]; then
+return 2
+fi
+start-stop-daemon --stop --quiet --oknodo --retry=0/30/KILL/5 --exec $DAEMON
+RETVAL="$?"
+if [ "$RETVAL" = 2 ]; then
+return 2
+fi
+#block process until server is completed shutting down fully
+while [ -n "$(pidof "$NAME")" ]; do
+sleep 1
+done
+# Many daemons don't delete their pidfiles when they exit.
+rm -f $PIDFILE
+rm -f $LOGFILE #we don't want to keep our logfile
+return "$RETVAL"
+}
+ 
+#
+# Function that sends a SIGHUP to the daemon/service
+#
+do_reload() {
+#
+# If the daemon can reload its configuration without
+# restarting (for example, when it is sent a SIGHUP),
+# then implement that here.
+#
+start-stop-daemon --stop --signal 1 --quiet --pidfile $PIDFILE --name $NAME
+return 0
+}
+ 
+msg_start() {
+case "$1" in
+0|1)
+if [ "$VERBOSE" != no ]; then
+log_end_msg 0
+fi
+;;
+2)
+if [ "$VERBOSE" != no ]; then
+log_end_msg 1
+fi
+;;
+3)
+if [ "$VERBOSE" != no ]; then
+log_daemon_msg "Port bind failure detected uTorrent may have limited functionality please change the bind port and restart uTorrent"
+log_end_msg 1
+fi
+;;
+esac
+}
+ 
+msg_stop() {
+case "$1" in
+0|1)
+if [ "$VERBOSE" != no ]; then
+log_end_msg 0
+fi
+;;
+*)
+if [ "$VERBOSE" != no ]; then
+log_daemon_msg "Failed to stop service exit status $STATUS"
+log_end_msg 1
+fi
+esac
+}
+ 
+case "$1" in
+start)
+if [ "$VERBOSE" != no ]; then
+log_daemon_msg "Starting $DESC"
+fi
+do_start
+msg_start "$?"
+;;
+stop)
+if [ "$VERBOSE" != no ]; then
+log_daemon_msg "Stopping $DESC"
+fi
+do_stop
+msg_stop "$?"
+;;
+status)
+if [ -e "$PIDFILE" ]; then
+PID=" PID:($(cat $PIDFILE))"
+else
+PID=""
+fi
+status_of_proc "$DAEMON" "uTorrent$PID"
+if [ "$?" != "0" ]; then
+exit $?
+fi
+;;
+restart|force-reload)
+#
+# If the "reload" option is implemented then remove the
+# 'force-reload' alias
+#
+log_daemon_msg "Restarting $DESC"
+do_stop
+STATUS="$?"
+if [ "$STATUS" -ne 0 ] && [ "$STATUS" -ne 1 ]; then
+log_daemon_msg "Could not stop exit status $STATUS"
+log_end_msg 1
+exit 1
+fi
+do_start
+STATUS="$?"
+case "$STATUS" in
+0)
+log_end_msg 0
+;;
+*)
+log_daemon_msg "Restart failed start exist status $STATUS"
+log_end_msg 1
+esac
+;;
+log)
+if [ -e "$LOGFILE" ]; then
+LOG=$(cat $LOGFILE)
+echo "$LOG"
+else
+echo "uTorrent is not running no active log file"
+fi
+;;
+ 
+*)
+echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload|log}" >&2
+exit 3
+;;
+esac
+echo UTORRENT INSTALADO COM SUCESSO  
+echo.
+echo..
+echo...
+
