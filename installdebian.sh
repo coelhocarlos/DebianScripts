@@ -75,7 +75,7 @@ supervisorctl reload
 #-------------------------------
 apt-get update
 mkdir downloads
-cd dowbloads
+cd downloads
 http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-debian-7-0
 mv linux-x64-debian-7-0 linux-x64-debian-7-0.tar.gz
 tar -zxvf linux-x64-debian-7-0.tar.gz -C /opt/
