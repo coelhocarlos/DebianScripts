@@ -36,7 +36,7 @@ apt-get install samba
 #FOUR MINECRAFT HEXPARROT
 #-----------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
------------------------------------------
+#-----------------------------------------
 apt-get update
 # update repositories
 
