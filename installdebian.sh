@@ -4,14 +4,10 @@
 #!/bin/bash
 apt-get update
 apt-get dist-upgrade -y
-
-
 echo INSTALANDO WEBMIN
-
 mkdir downloads
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
 apt-get install -f
-
 echo WEBMIN INSTALADO COM SUCESSO ----
 echo.
 echo..
@@ -24,16 +20,12 @@ apt-get install mysql-server -y
 apt-get install phpmyadmin -y
 apt-get install nmap -y
 apt-get install samba -y
-
 echo INSTALANDO MINECRAFT 
-
 # update repositories
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get update
-
 # download the necessary prerequisite components for mineos
 apt-get -y install nodejs supervisor git rdiff-backup screen build-essential openjdk-7-jre-headless
-
 # download the most recent mineos web-ui files from github
 mkdir -p /usr/games
 cd /usr/games
@@ -44,24 +36,18 @@ chmod +x service.js mineos_console.js generate-sslcert.sh webui.js
 ln -s /usr/games/minecraft/mineos_console.js /usr/local/bin/mineos
 cp mineos.conf /etc/mineos.conf
 npm install
-
 # distribute service related files
 cp init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
-
 # generate self-signed certificate
 ./generate-sslcert.sh
-
 # start the background service
 supervisorctl reload
-
 echo MINECRAFT INSTALADO COM SUCESSO 
 echo.
 echo..
 echo...
 echo INSTALANDO UTORRENT
-
 apt-get update
-
 mkdir downloads
 cd downloads
 wgte http://download.ap.bittorrent.com/track/beta/endpoint/utserver/os/linux-x64-debian-7-0
@@ -74,7 +60,6 @@ for debian stretch
 wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
-
 echo UTORRENT INSTALADO COM SUCESSO  
 echo.
 echo..
