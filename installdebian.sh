@@ -1,10 +1,10 @@
 #INSTALL LINUX DEBIAN  WEBMIN APACHE MYSQL-SERVER PHPMYADMIN NMAP  MINECRAFT 
------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 #Original Distro MInecraft file Carlos Coelho 2017 - Zer0
------------------------------------------------------------------------------------------------------------------
+#-----------------------------------------------------------------------------------------------------------------
 
 #FIRST DEBIAN-WEB
-----------------------------------------
+#----------------------------------------
 
 #Install debian netinstall
 
@@ -13,7 +13,7 @@
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
 
 #SECOUND WEBMIN 
------------------------------------------
+#-----------------------------------------
 
 in terminal server
 apt-get update
@@ -23,7 +23,7 @@ on error fault -> libraries ->
 apt-get install -f
 
 #THIRDY PHP MYSQL APACHE NMAP SAMBA
------------------------------------
+#-----------------------------------
 
 apt-get update install
 apt-get install apache2
@@ -34,7 +34,7 @@ apt-get install nmap
 apt-get install samba
 
 #FOUR MINECRAFT HEXPARROT
------------------------------------------
+#-----------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
 -----------------------------------------
 apt-get update
@@ -68,7 +68,7 @@ cp init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
 supervisorctl reload
 
 #UTORRENT
--------------------------------
+#-------------------------------
 apt-get update
 mkdir downloads
 cd dowbloads
@@ -82,9 +82,9 @@ for debian stretch
 $ wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 # dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
---------------------------
+#--------------------------
 #INIT AS SERVICE UTORRENT
---------------------
+#--------------------
 
 wget https://pastebin.com/raw/GZwVSH6D
 chmod 755 utorrent
@@ -95,9 +95,9 @@ service utorrent start
 systemctl status utorrent.service
 service utorrent restart
 service utorrent stop
----
+#---
 #need remove 
 #update-rc.d utorrent remove
----
+#---
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
