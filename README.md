@@ -1,6 +1,30 @@
 # debian9-install
 install a script in debian
 
+--------Servidores web--------
+
+Apache 2
+Php 7.0
+Mysql-server
+Samba
+
+--------Servidor Minecraft ---------
+
+Hexparrot -server minecraft
+
+--------Softwares uteis    ---------
+
+No-ip
+recover image
+
+-------- firewall ------------------
+
+pré configured ports
+
+
+--------------------------------------------------------####
+
+
 How to install script ---
 
 Install debian 9 netinstall
