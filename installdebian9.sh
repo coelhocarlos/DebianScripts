@@ -97,7 +97,7 @@ cp utorrent /etc/init.d/
 cd /etc/init.d/
 update-rc.d utorrent defaults
 service utorrent start
-systemctl status utorrent.service
+#systemctl status utorrent.service
 service utorrent restart
 
 #--------------------------
