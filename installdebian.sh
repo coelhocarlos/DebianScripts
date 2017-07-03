@@ -99,7 +99,11 @@ update-rc.d utorrent defaults
 service utorrent start
 systemctl status utorrent.service
 service utorrent restart
-service utorrent stop
+
+#--------------------------
+#END INSTALl UTORRENT
+#--------------------
+# service utorrent stop
 #---
 #need remove 
 #update-rc.d utorrent remove
