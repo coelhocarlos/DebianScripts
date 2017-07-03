@@ -103,5 +103,57 @@ service utorrent stop
 #need remove 
 #update-rc.d utorrent remove
 #---
+#------------------------
+# IPTABLES RULES
+#------------------------
+# flush
+iptables -t nat -F
+iptables -t nat -X
+iptables -t mangle -F
+iptables -t mangle -X
+
+# Teamspeak
+iptables -A INPUT -p udp --dport 9987 -j ACCEPT
+iptables -A INPUT -p udp --sport 9987 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 30033 -j ACCEPT
+iptables -A INPUT -p tcp --sport 30033 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 10011 -j ACCEPT
+iptables -A INPUT -p tcp --sport 10011 -j ACCEPT
+
+# HTTP(s)
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --sport 80 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+iptables -A INPUT -p tcp --sport 8080 -j ACCEPT
+
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -p tcp --sport 443 -j ACCEPT
+
+# SSH
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -A INPUT -p tcp --sport 22 -j ACCEPT
+
+# DNS
+iptables -A INPUT -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -p udp --sport 53 -j ACCEPT
+
+# MINECRAFT
+iptables -A INPUT -p udp --dport 25565 -j ACCEPT
+iptables -A INPUT -p udp --sport 25565 -j ACCEPT
+iptables -A INPUT -p udp --dport 25567 -j ACCEPT
+iptables -A INPUT -p udp --sport 25567 -j ACCEPT
+#SECURE
+iptables -P INPUT DROP
+iptables -P FORWARD DROP
+iptables -P OUTPUT ACCEPT
+#SAVE
+iptables-save > /etc/iptable-rules
+#SERVICE
+service iptables save  
+service iptables restart
+
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
