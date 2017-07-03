@@ -125,8 +125,7 @@ service utorrent restart
 #------------------------
 # IPTABLES RULES
 #------------------------
-# flush
-iptables -L
+
 
 # Teamspeak
 iptables -A INPUT -p udp --dport 9987 -j ACCEPT
@@ -163,9 +162,12 @@ iptables -A INPUT -p udp --dport 25567 -j ACCEPT
 iptables -A INPUT -p udp --sport 25567 -j ACCEPT
 
 #SAVE
-iptables-save > /etc/iptable-rules
+iptables-save > /etc/iptables.up.rules
 #RESTORE
-iptables-restore < /etc/iptable-rules
+iptables-restore < /etc/iptables.up.rules
+
+# flush
+iptables -L
 
 
 #--------------------------
