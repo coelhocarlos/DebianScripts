@@ -33,7 +33,8 @@ apt-get install mysql-server
 apt-get install phpmyadmin
 apt-get install nmap
 apt-get install samba
-
+apt-get install iptraf-ng #  monitor lan
+apt-get install testdisk  #  recover images
 #echo FOUR MINECRAFT HEXPARROT
 #------------------------------------------------------------------------------clear
 
@@ -155,5 +156,21 @@ iptables-save > /etc/iptable-rules
 service iptables save  
 service iptables restart
 
+#--------------------------
+   echo TEAMSPEAK3 SERVER
+#--------------------------
+	
+wget http://ftp.4players.de/pub/hosted/ts3/releases/3.0.10.3/teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
+tar xzf teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
+adduser --disabled-login teamspeak3
+mv teamspeak3-server_linux-amd64 /usr/local/teamspeak3
+chown -R teamspeak3 /usr/local/teamspeak3
+ln -s /usr/local/teamspeak3/ts3server_startscript.sh /etc/init.d/teamspeak3
+update-rc.d teamspeak3 defaults
+service teamspeak3 start
+
+#---------------------------
+   END TEAMSPEAK3
+#--------------------------
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
