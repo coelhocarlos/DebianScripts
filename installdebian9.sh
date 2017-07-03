@@ -161,6 +161,19 @@ iptables -A INPUT -p udp --sport 25565 -j ACCEPT
 iptables -A INPUT -p udp --dport 25567 -j ACCEPT
 iptables -A INPUT -p udp --sport 25567 -j ACCEPT
 
+echo "Restante da rede segue as regras de bloqueios por horaio 1.1.1.100-1.1.1.240 (Facebook e YouTube)"
+
+    echo "bloqueia facebook mas libera na hora do almoco [ok]"
+    $IPT -A FORWARD -p tcp -i $IF_LAN -o $IF_WAN --dport $HTTPS -m string --algo bm --string "facebook.com" -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
+
+    echo "bloqueia youtube mas libera na hora do almoco [ok]"
+    $IPT -A FORWARD -s $REDE_INTERNA -m string --algo bm --string 'youtube.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
+    $IPT -A OUTPUT -s $REDE_INTERNA -m string --algo bm --string 'youtube.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
+
+    echo "bloqueia twitter mas libera na hora do almoco [ok]"
+    $IPT -A FORWARD -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
+    $IPT -A OUTPUT -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
+    
 #SAVE
 iptables-save > /etc/iptables.up.rules
 #RESTORE
