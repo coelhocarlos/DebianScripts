@@ -170,7 +170,7 @@ update-rc.d teamspeak3 defaults
 service teamspeak3 start
 
 #---------------------------
-   END TEAMSPEAK3
+   echo END TEAMSPEAK3
 #--------------------------
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
