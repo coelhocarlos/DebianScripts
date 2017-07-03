@@ -37,9 +37,19 @@ apt-get install iptraf-ng -y #  monitor lan
 apt-get install testdisk  -y #  recover images
 #echo FOUR MINECRAFT HEXPARROT
 #------------------------------------------------------------------------------clear
+#DNS NO-IP
+#----------------------------------------------------------------------
 
-
-
+cd /usr/local/src
+wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
+tar xzf noip-duc-linux.tar.gz
+cd no-ip-2.1.9-1
+make
+#configure 
+make install
+#------------
+#----------------------------------------------------------------------
+#----------------------------------------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
 #-----------------------------------------
 apt-get update
