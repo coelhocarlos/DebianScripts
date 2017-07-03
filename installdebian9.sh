@@ -126,10 +126,7 @@ service utorrent restart
 # IPTABLES RULES
 #------------------------
 # flush
-iptables -t nat -F
-iptables -t nat -X
-iptables -t mangle -F
-iptables -t mangle -X
+iptables -L
 
 # Teamspeak
 iptables -A INPUT -p udp --dport 9987 -j ACCEPT
@@ -164,15 +161,12 @@ iptables -A INPUT -p udp --dport 25565 -j ACCEPT
 iptables -A INPUT -p udp --sport 25565 -j ACCEPT
 iptables -A INPUT -p udp --dport 25567 -j ACCEPT
 iptables -A INPUT -p udp --sport 25567 -j ACCEPT
-#SECURE
-iptables -P INPUT DROP
-iptables -P FORWARD DROP
-iptables -P OUTPUT ACCEPT
+
 #SAVE
 iptables-save > /etc/iptable-rules
-#SERVICE
-service iptables save  
-service iptables restart
+#RESTORE
+iptables-restore < /etc/iptable-rules
+
 
 #--------------------------
    echo TEAMSPEAK3 SERVER
