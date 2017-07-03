@@ -34,6 +34,7 @@ apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
 apt-get install iptraf-ng -y #  monitor lan
+apt-get install install net-tools -y # case fault ifconfig
 apt-get install testdisk  -y #  recover images
 #echo FOUR MINECRAFT HEXPARROT
 #------------------------------------------------------------------------------clear
