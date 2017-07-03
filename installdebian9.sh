@@ -1,6 +1,6 @@
 #INSTALL LINUX DEBIAN  WEBMIN APACHE MYSQL-SERVER PHPMYADMIN NMAP  HEXPARROT MINECRAFT 
 #-----------------------------------------------------------------------------------------------------------------
-#Original Distro MInecraft file Carlos Coelho 2017 - Zer0
+#Original Distro MInecraft file Carlos Coelho 2017 - Zept3P -
 #-----------------------------------------------------------------------------------------------------------------
 
 #FIRST DEBIAN-WEB
@@ -20,8 +20,11 @@
 apt-get update
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
 dpkg --install webmin_1.850_all.deb
-# on error fault -> libraries ->
+# on error fault -> libraries -> 
+# on port error /etc/init.d/webmin restart
+# editing /etc/webmin/miniserv.conf port 10000 to 10222
 apt-get install -f
+
 
 #echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 #----------------------------------------------------------------------
