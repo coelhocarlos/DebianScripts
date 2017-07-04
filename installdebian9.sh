@@ -42,7 +42,7 @@ apt-get install testdisk  -y #  recover images
 #-----------------------------------------------------------------------
 #VAR/WWW modify to your user
 #-----------------------------------------------------------------------
-cd /var/www/
+cd /var/www
 chown www-data:www-data -R *
 chown root:root -R *
 chown carloscoelho:carloscoelho -R *
