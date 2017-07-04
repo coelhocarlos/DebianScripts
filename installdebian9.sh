@@ -39,8 +39,15 @@ apt-get install samba -y
 apt-get install iptraf-ng -y #  monitor lan
 apt-get install install net-tools -y # case fault ifconfig
 apt-get install testdisk  -y #  recover images
-#echo FOUR MINECRAFT HEXPARROT
-#------------------------------------------------------------------------------clear
+#-----------------------------------------------------------------------
+#VAR/WWW modify to your user
+#-----------------------------------------------------------------------
+cd /var/www/
+chown www-data:www-data -R *
+chown root:root -R *
+chown carloscoelho:carloscoelho -R *
+/etc/init.d/apache2 restart
+#-----------------------------------------------------------------------
 #DNS NO-IP
 #----------------------------------------------------------------------
 
