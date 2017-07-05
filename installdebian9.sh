@@ -36,9 +36,14 @@ apt-get install mysql-server
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
-apt-get install iptraf-ng -y #  monitor lan
-apt-get install install net-tools -y # case fault ifconfig
-apt-get install testdisk  -y #  recover images
+#  monitor lan
+apt-get install iptraf-ng -y 
+# case fault ifconfig
+apt-get install install net-tools -y 
+#  recover images
+apt-get install testdisk  -y 
+#monitor your Server ---  Start $glances
+apt-get install glances -y 
 #-----------------------------------------------------------------------
 #VAR/WWW modify to your user
 #-----------------------------------------------------------------------
@@ -204,7 +209,29 @@ update-rc.d teamspeak3 defaults
 service teamspeak3 start
 
 #---------------------------
-   echo END TEAMSPEAK3
+   echo END TEAMSPEAK
+#--------------------------
+#---------------------------
+   echo Netdata INSTALL
+#--------------------------
+apt-get install uuid-dev
+curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' >/tmp/kickstart.sh && bash /tmp/kickstart.sh -i netdata-all
+apt-get install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autoconf-archive autogen automake pkg-config curl
+git clone https://github.com/firehol/netdata.git --depth=1
+cd netdata
+./netdata-installer.sh
+# stop netdata
+killall netdata
+# copy netdata.service to systemd
+cp system/netdata.service /etc/systemd/system/
+# let systemd know there is a new service
+systemctl daemon-reload
+# enable netdata at boot
+systemctl enable netdata
+# start netdata
+systemctl start netdata
+#---------------------------
+   echo Netdata END
 #--------------------------
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
