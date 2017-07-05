@@ -12,7 +12,8 @@
 #http://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-8.7.1-i386-netinst.iso
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
 
-#echo SECOUND WEBMIN 
+#
+echo install WEBMIN 
 #-----------------------------------------
 
 #in terminal server
@@ -26,7 +27,7 @@ dpkg --install webmin_1.850_all.deb
 apt-get install -f
 
 
-#echo THIRDY PHP MYSQL APACHE NMAP SAMBA
+echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 #----------------------------------------------------------------------
 
 apt-get update install
@@ -45,7 +46,7 @@ apt-get install testdisk  -y
 #monitor your Server ---  Start $glances
 apt-get install glances -y 
 #-----------------------------------------------------------------------
-#VAR/WWW modify to your user
+echo START  VAR/WWW modify to your user
 #-----------------------------------------------------------------------
 cd /var/www
 chown www-data:www-data -R *
@@ -53,7 +54,7 @@ chown root:root -R *
 chown carloscoelho:carloscoelho -R *
 /etc/init.d/apache2 restart
 #-----------------------------------------------------------------------
-#DNS NO-IP
+echo INSTALL  DNS NO-IP START
 #----------------------------------------------------------------------
 
 cd /usr/local/src
@@ -98,7 +99,7 @@ cp init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
 # start the background service
 supervisorctl reload
 
-#UTORRENT
+echo START INSTALL UTORRENT
 #-------------------------------
 apt-get update
 mkdir downloads
@@ -114,7 +115,7 @@ wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libs
 dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 #--------------------------
-#INIT AS SERVICE UTORRENT
+echo INIT AS SERVICE UTORRENT
 #--------------------
 
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/utorrent
@@ -127,7 +128,7 @@ service utorrent start
 service utorrent restart
 
 #--------------------------
-#END INSTALl UTORRENT
+echo END INSTALl UTORRENT
 #--------------------
 # service utorrent stop
 #---
@@ -135,11 +136,11 @@ service utorrent restart
 #update-rc.d utorrent remove
 #---
 #------------------------
-# IPTABLES RULES
+echo  IPTABLES RULES
 #------------------------
 
 
-# Teamspeak
+echo  Teamspeak iptables
 iptables -A INPUT -p udp --dport 9987 -j ACCEPT
 iptables -A INPUT -p udp --sport 9987 -j ACCEPT
 
@@ -149,7 +150,7 @@ iptables -A INPUT -p tcp --sport 30033 -j ACCEPT
 iptables -A INPUT -p tcp --dport 10011 -j ACCEPT
 iptables -A INPUT -p tcp --sport 10011 -j ACCEPT
 
-# HTTP(s)
+echo  HTTP(s)
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --sport 80 -j ACCEPT
 
@@ -159,15 +160,15 @@ iptables -A INPUT -p tcp --sport 8080 -j ACCEPT
 iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 iptables -A INPUT -p tcp --sport 443 -j ACCEPT
 
-# SSH
+echo  SSH
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --sport 22 -j ACCEPT
 
-# DNS
+echo DNS
 iptables -A INPUT -p udp --dport 53 -j ACCEPT
 iptables -A INPUT -p udp --sport 53 -j ACCEPT
 
-# MINECRAFT
+echo MINECRAFT
 iptables -A INPUT -p udp --dport 25565 -j ACCEPT
 iptables -A INPUT -p udp --sport 25565 -j ACCEPT
 iptables -A INPUT -p udp --dport 25567 -j ACCEPT
@@ -186,12 +187,12 @@ echo "Restante da rede segue as regras de bloqueios por horaio 1.1.1.100-1.1.1.2
    iptables -A FORWARD -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
    iptables -A OUTPUT -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
     
-#SAVE
+echo SAVE
 iptables-save > /etc/iptables.up.rules
-#RESTORE
+echo RESTORE
 iptables-restore < /etc/iptables.up.rules
 
-# flush
+echo  flush
 iptables -L
 
 
