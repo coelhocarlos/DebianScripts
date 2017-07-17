@@ -150,7 +150,6 @@ iptables -A INPUT -p tcp --sport 30033 -j ACCEPT
 iptables -A INPUT -p tcp --dport 10011 -j ACCEPT
 iptables -A INPUT -p tcp --sport 10011 -j ACCEPT
 
-echo  HTTP(s)
 iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 iptables -A INPUT -p tcp --sport 80 -j ACCEPT
 
