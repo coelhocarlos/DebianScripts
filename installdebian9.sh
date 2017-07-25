@@ -51,7 +51,7 @@ echo START  VAR/WWW modify to your user
 cd /var/www
 chown www-data:www-data -R *
 chown root:root -R *
-chown carloscoelho:carloscoelho -R *
+chown zombie:zombie -R *
 /etc/init.d/apache2 restart
 #-----------------------------------------------------------------------
 echo INSTALL  DNS NO-IP START
@@ -235,3 +235,23 @@ systemctl start netdata
 #--------------------------
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
+
+#----------------------------------------------
+#INSTALL CONAN EXILES SERVER
+#----------------------------------------------
+apt-get install libfreetype6-dev libX11-dev libxml2-dev libxslt1-dev make flex bison lib32gcc1 curl screen ca-certificates -y
+screen
+wget http://dl.winehq.org/wine/source/2.0/wine-2.0.tar.bz2
+tar -xvf wine-2.0.tar.bz2 -C /usr/src/
+apt-get install q4wine
+apt-get install mono-complete
+cd /usr/src/wine-2.0/
+./configure --with-png --enable-win64
+make -j X 
+cat /proc/cpuinfo | grep processor | wc -l
+make install 
+cd ~
+mkdir Conan
+cd Conan
+curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ~/Conan/Serverfiles +login anonymous +app_update 443030 validate +quit 
