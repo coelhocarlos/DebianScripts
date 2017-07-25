@@ -64,7 +64,7 @@ cd noip-2.1.9-1
 make
 #configure 
 make install
-#------------
+#
 #----------------------------------------------------------------------
 #----------------------------------------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
@@ -173,18 +173,12 @@ iptables -A INPUT -p udp --sport 25565 -j ACCEPT
 iptables -A INPUT -p udp --dport 25567 -j ACCEPT
 iptables -A INPUT -p udp --sport 25567 -j ACCEPT
 
-echo "Restante da rede segue as regras de bloqueios por horaio 1.1.1.100-1.1.1.240 (Facebook e YouTube)"
+echo CONA SERVER
+iptables -A INPUT -p udp --dport 7787 -j ACCEPT
+iptables -A INPUT -p udp --sport 7787 -j ACCEPT
+iptables -A INPUT -p udp --dport 8888 -j ACCEPT
+iptables -A INPUT -p udp --sport 8888 -j ACCEPT
 
-    echo "bloqueia facebook mas libera na hora do almoco [ok]"
-    iptables -A FORWARD -p tcp -i $IF_LAN -o $IF_WAN --dport $HTTPS -m string --algo bm --string "facebook.com" -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
-
-    echo "bloqueia youtube mas libera na hora do almoco [ok]"
-   iptables -A FORWARD -s $REDE_INTERNA -m string --algo bm --string 'youtube.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
-   iptables -A OUTPUT -s $REDE_INTERNA -m string --algo bm --string 'youtube.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
-
-    echo "bloqueia twitter mas libera na hora do almoco [ok]"
-   iptables -A FORWARD -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
-   iptables -A OUTPUT -s $REDE_INTERNA -m string --algo bm --string 'twitter.com' -m time --timestart 13:30 --timestop 12:00 --kerneltz -j DROP
     
 echo SAVE
 iptables-save > /etc/iptables.up.rules
@@ -211,6 +205,28 @@ service teamspeak3 start
 #---------------------------
    echo END TEAMSPEAK
 #--------------------------
+
+#----------------------------------------------
+echo INSTALL CONAN EXILES SERVER
+#----------------------------------------------
+
+apt-get install libfreetype6-dev libX11-dev libxml2-dev libxslt1-dev make flex bison lib32gcc1 curl screen ca-certificates -y
+screen
+wget http://dl.winehq.org/wine/source/2.0/wine-2.0.tar.bz2
+tar -xvf wine-2.0.tar.bz2 -C /usr/src/
+apt-get install q4wine
+apt-get install mono-complete
+cd /usr/src/wine-2.0/
+./configure --with-png --enable-win64
+make -j X 
+cat /proc/cpuinfo | grep processor | wc -l
+make install 
+cd ~
+mkdir Conan
+cd Conan
+curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
+./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ~/Conan/Serverfiles +login anonymous +app_update 443030 validate +quit 
+
 #---------------------------
    echo Netdata INSTALL
 #--------------------------
@@ -236,22 +252,4 @@ systemctl start netdata
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
 
-#----------------------------------------------
-#INSTALL CONAN EXILES SERVER
-#----------------------------------------------
-apt-get install libfreetype6-dev libX11-dev libxml2-dev libxslt1-dev make flex bison lib32gcc1 curl screen ca-certificates -y
-screen
-wget http://dl.winehq.org/wine/source/2.0/wine-2.0.tar.bz2
-tar -xvf wine-2.0.tar.bz2 -C /usr/src/
-apt-get install q4wine
-apt-get install mono-complete
-cd /usr/src/wine-2.0/
-./configure --with-png --enable-win64
-make -j X 
-cat /proc/cpuinfo | grep processor | wc -l
-make install 
-cd ~
-mkdir Conan
-cd Conan
-curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ~/Conan/Serverfiles +login anonymous +app_update 443030 validate +quit 
+
