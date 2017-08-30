@@ -141,6 +141,8 @@ echo  IPTABLES RULES
 #-----Allow Established and Related Incoming Connections
 iptables -A INPUT -i lo -j ACCEPT
 iptables -A OUTPUT -o lo -j ACCEPT
+iptables -A INPUT -i enp1s0 -j ACCEPT
+iptables -A OUTPUT -o enp1s0 -j ACCEPT
 #-----Allow Established Outgoing Connections
 iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 #-----Internal to External
