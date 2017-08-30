@@ -1,4 +1,4 @@
-#INSTALL LINUX DEBIAN  WEBMIN APACHE MYSQL-SERVER PHPMYADMIN NMAP  HEXPARROT MINECRAFT 
+#INSTALL LINUX DEBIAN  WEBMIN APACHE PHP 7.1 MYSQL-SERVER PHPMYADMIN NMAP  HEXPARROT MINECRAFT MINEOS
 #-----------------------------------------------------------------------------------------------------------------
 #Original Distro MInecraft file Carlos Coelho 2017 - Zept3P -
 #-----------------------------------------------------------------------------------------------------------------
@@ -32,7 +32,7 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 
 apt-get update install
 apt-get install apache2 -y
-apt-get install php7.0 -y
+apt-get install php7.1 -y
 apt-get install mysql-server
 apt-get install phpmyadmin
 apt-get install nmap -y
@@ -230,26 +230,6 @@ service teamspeak3 start
    echo END TEAMSPEAK
 #--------------------------
 
-#----------------------------------------------
-echo INSTALL CONAN EXILES SERVER
-#----------------------------------------------
-
-apt-get install libfreetype6-dev libX11-dev libxml2-dev libxslt1-dev make flex bison lib32gcc1 curl screen ca-certificates -y
-screen
-wget http://dl.winehq.org/wine/source/2.0/wine-2.0.tar.bz2
-tar -xvf wine-2.0.tar.bz2 -C /usr/src/
-apt-get install q4wine
-apt-get install mono-complete
-cd /usr/src/wine-2.0/
-./configure --with-png --enable-win64
-make -j X 
-cat /proc/cpuinfo | grep processor | wc -l
-make install 
-cd ~
-mkdir Conan
-cd Conan
-curl -sqL "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" | tar zxvf -
-./steamcmd.sh +@sSteamCmdForcePlatformType windows +force_install_dir ~/Conan/Serverfiles +login anonymous +app_update 443030 validate +quit 
 
 #---------------------------
    echo Netdata INSTALL
