@@ -128,7 +128,7 @@ service utorrent start
 service utorrent restart
 
 #--------------------------
-echo END INSTALl UTORRENT
+echo END INSTALL UTORRENT
 #--------------------
 # service utorrent stop
 #---
@@ -155,7 +155,7 @@ iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT
 #iptables -A INPUT -s 15.15.15.51 -j REJECT
 #----Reject Network Interfaces
 #iptables -A INPUT -i eth0 -s 15.15.15.51 -j DROP
-#----Allow All Incoming SSH
+#----Allow All Incoming SSH 
 iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 iptables -A INPUT -p tcp -s 15.15.15.0/24 --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
@@ -193,18 +193,25 @@ iptables -A OUTPUT -p tcp --sport 993 -m conntrack --ctstate ESTABLISHED -j ACCE
 iptables -A INPUT -p tcp --dport 110 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 110 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 #---Allow All Incoming POP3S
-sudo iptables -A INPUT -p tcp --dport 995 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-sudo iptables -A OUTPUT -p tcp --sport 995 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-#---Allow All Incoming POP3S
-
-
+iptables -A INPUT -p tcp --dport 995 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 995 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow All TEAMSPEAK3
+iptables -A INPUT -p tcp --dport 10011 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 10011 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --dport 30033 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 30033 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -A INPUT -p udp --dport  9987 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p udp --sport  9987 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow All MINECRAFT
+iptables -A INPUT -p tcp --dport 25565 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 25565 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----SAVE
 iptables-save > /etc/iptables.up.rules
-echo RESTORE
+#----RESTORE
 iptables-restore < /etc/iptables.up.rules
-
-
+#---FLUSH
 iptables -F
-
+#---FINISH IPTABLES
 
 #--------------------------
    echo TEAMSPEAK3 SERVER
