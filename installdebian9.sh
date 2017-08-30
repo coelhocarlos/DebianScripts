@@ -138,55 +138,72 @@ echo END INSTALl UTORRENT
 #------------------------
 echo  IPTABLES RULES
 #------------------------
+#-----Allow Established and Related Incoming Connections
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+#-----Allow Established Outgoing Connections
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+#-----Internal to External
+iptables -A OUTPUT -m conntrack --ctstate ESTABLISHED -j ACCEPT 
+#-----Drop Invalid Packets
+#iptables -A FORWARD -i eth1 -o eth0 -j ACCEPT
+#----Block an IP Address
+#iptables -A INPUT -m conntrack --ctstate INVALID -j DROP
+#----Block a invalid Packets
+#iptables -A INPUT -s 15.15.15.51 -j DROP
+#----Reject Network Ip
+#iptables -A INPUT -s 15.15.15.51 -j REJECT
+#----Reject Network Interfaces
+#iptables -A INPUT -i eth0 -s 15.15.15.51 -j DROP
+#----Allow All Incoming SSH
+iptables -A INPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp -s 15.15.15.0/24 --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow Outgoing SSH
+iptables -A OUTPUT -p tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow All Incoming HTTP
+iptables -A INPUT -p tcp --dport 80 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow All Incoming HTTPS
+iptables -A INPUT -p tcp --dport 443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow All Incoming HTTP and HTTPS
+iptables -A INPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp -m multiport --dports 80,443 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow All Incoming FTP
+iptables -A INPUT -p tcp --dport 21-m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 21-m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow MySQL from Specific IP Address or Subnet
+iptables -A INPUT -p tcp -s 15.15.15.0/24 --dport 3306 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 3306 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#----Allow Email  
+iptables -A INPUT -p tcp --dport 25 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 25 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -A INPUT -p tcp --dport 143 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 143 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow Eamail SMTP 
+iptables -A INPUT -p tcp --dport 143 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 143 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow Eamail IMAP
+iptables -A INPUT -p tcp --dport 993 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 993 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow All Incoming POP3
+iptables -A INPUT -p tcp --dport 110 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 110 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow All Incoming POP3S
+sudo iptables -A INPUT -p tcp --dport 995 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+sudo iptables -A OUTPUT -p tcp --sport 995 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#---Allow All Incoming POP3S
 
 
-echo  Teamspeak iptables
-iptables -A INPUT -p udp --dport 9987 -j ACCEPT
-iptables -A INPUT -p udp --sport 9987 -j ACCEPT
-
-iptables -A INPUT -p tcp --dport 30033 -j ACCEPT
-iptables -A INPUT -p tcp --sport 30033 -j ACCEPT
-
-iptables -A INPUT -p tcp --dport 10011 -j ACCEPT
-iptables -A INPUT -p tcp --sport 10011 -j ACCEPT
-
-iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT -p tcp --sport 80 -j ACCEPT
-
-iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
-iptables -A INPUT -p tcp --sport 8080 -j ACCEPT
-
-iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-iptables -A INPUT -p tcp --sport 443 -j ACCEPT
-
-echo  SSH
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT -p tcp --sport 22 -j ACCEPT
-
-echo DNS
-iptables -A INPUT -p udp --dport 53 -j ACCEPT
-iptables -A INPUT -p udp --sport 53 -j ACCEPT
-
-echo MINECRAFT
-iptables -A INPUT -p udp --dport 25565 -j ACCEPT
-iptables -A INPUT -p udp --sport 25565 -j ACCEPT
-iptables -A INPUT -p udp --dport 25567 -j ACCEPT
-iptables -A INPUT -p udp --sport 25567 -j ACCEPT
-
-echo CONA SERVER
-iptables -A INPUT -p udp --dport 7787 -j ACCEPT
-iptables -A INPUT -p udp --sport 7787 -j ACCEPT
-iptables -A INPUT -p udp --dport 8888 -j ACCEPT
-iptables -A INPUT -p udp --sport 8888 -j ACCEPT
-
-    
-echo SAVE
 iptables-save > /etc/iptables.up.rules
 echo RESTORE
 iptables-restore < /etc/iptables.up.rules
 
-echo  flush
-iptables -L
+
+iptables -F
 
 
 #--------------------------
