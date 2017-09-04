@@ -207,6 +207,10 @@ iptables -A OUTPUT -p udp --sport  9987 -m conntrack --ctstate ESTABLISHED -j AC
 #---Allow All MINECRAFT
 iptables -A INPUT -p tcp --dport 25565 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 25565 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#--Allow All QUAKE
+iptables -A INPUT -p udp -m udp --dport 27910:27912 -j ACCEPT
+#--Allow All CSTRIKE
+iptables -A INPUT -p udp -m udp --dport 27915:27917 -j ACCEPT
 #----SAVE
 iptables-save > /etc/iptables.up.rules
 #----RESTORE
