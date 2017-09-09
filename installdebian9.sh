@@ -235,8 +235,19 @@ service teamspeak3 start
 #---------------------------
    echo END TEAMSPEAK
 #--------------------------
+#---------------------------
+   echo letsencrypt
+#--------------------------
 
+cd /home/zombie/
+mkdir downloads 
+cd downloads
+git clone https://github.com/letsencrypt/letsencrypt
+./letsencrypt-auto certonly --standalone --email saheetha1@gmail.com --agree-tos -d nodenixbox.com
 
+#---------------------------
+   echo END letsencrypt
+#--------------------------
 #---------------------------
    echo Netdata INSTALL
 #--------------------------
