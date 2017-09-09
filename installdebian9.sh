@@ -43,8 +43,10 @@ apt-get install iptraf-ng -y
 apt-get install install net-tools -y 
 #  recover images
 apt-get install testdisk  -y 
-#monitor your Server ---  Start $glances
+# monitor your Server ---  Start $glances
 apt-get install glances -y 
+# git
+apt-get install git bc -y
 #-----------------------------------------------------------------------
 echo START  VAR/WWW modify to your user
 #-----------------------------------------------------------------------
