@@ -203,6 +203,9 @@ iptables -A OUTPUT -p tcp --sport 995 -m conntrack --ctstate ESTABLISHED -j ACCE
 #---Allow All TEAMSPEAK3
 iptables -A INPUT -p tcp --dport 10011 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 10011 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+iptables -A INPUT -p tcp -m tcp --dport 10000 -j ACCEPT
+
 iptables -A INPUT -p tcp --dport 30033 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 30033 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 iptables -A INPUT -p udp --dport  9987 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
@@ -242,7 +245,7 @@ service teamspeak3 start
    echo letsencrypt
 #--------------------------
 
-cd downloads
+#cd downloads
 git clone https://github.com/letsencrypt/letsencrypt
 ./letsencrypt-auto certonly --standalone --email saheetha1@gmail.com --agree-tos -d nodenixbox.com
 
