@@ -229,7 +229,10 @@ iptables -F
 INSTALL MEGATools
 #--------------------------------------------------------------------
 apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
-
+cd
+mkdir scripts
+wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
+cd 
 mkdir downloads 
 cd downloads 
 wget http://ftp.br.debian.org/debian/pool/main/m/megatools/megatools_1.9.98-1_amd64.deb
