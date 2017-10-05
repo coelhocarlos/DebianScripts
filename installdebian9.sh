@@ -229,6 +229,8 @@ iptables -F
 INSTALL MEGATools
 #--------------------------------------------------------------------
 apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
+adduser megabackup
+su - megabackup
 cd
 mkdir scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
@@ -258,7 +260,7 @@ nano .megarc
 #megastream –  Download Transmissão MegaStream de um arquivo (pode ser usado para ver os vídeos ou música).
 #megasync –  Upload ou download de uma árvore de diretórios.
 
-
+su -
 #--------------------------
    echo TEAMSPEAK3 SERVER
 #--------------------------
