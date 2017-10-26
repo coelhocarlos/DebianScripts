@@ -20,7 +20,7 @@ echo install WEBMIN
 #----------------------------------------------------------------------
 apt-get update
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.850_all.deb
-dpkg --install webmin_1.850_all.deb
+dpkg --install webmin_1.860_all.deb
 # on error fault -> libraries -> 
 # on port error /etc/init.d/webmin restart
 # editing /etc/webmin/miniserv.conf port 10000 to 10222
