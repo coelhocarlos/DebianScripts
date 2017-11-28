@@ -283,7 +283,7 @@ systemctl start netdata
 #--------------------------
 
 #------------------------------------------------------------------
-INSTALL MEGATools
+#Iecho INSTALL MEGATools
 #--------------------------------------------------------------------
 apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
 adduser megabackup
