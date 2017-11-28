@@ -74,7 +74,7 @@ make install
 #-----------------------------------------
 apt-get update
 # update repositories
-
+# change port nano /etc/webmin/miniserv.conf
 apt-get install curl
 curl -sL https://deb.nodesource.com/setup_4.x | bash -
 apt-get update
