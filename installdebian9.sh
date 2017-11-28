@@ -114,8 +114,13 @@ chown root:root -R /opt/utorrent-server-alpha-v3_3/
 ln -s /opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
 # apt-get install libssl1.0.0 libssl-dev original squeze
 # for debian stretch
-wget http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
-dpkg -i libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+apt-get install gdebi -y
+wget  http://ftp.br.debian.org/debian/pool/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+wget  http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.1_amd64.deb
+apt install gdebi dirmngr
+gdebi libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
+dpkg -i libssl-dev_1.0.1t-1+deb8u6_amd64.deb
+dpkg -i libssl1.0.0_1.0.2g-1ubuntu4.1_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 #--------------------------
 echo INIT AS SERVICE UTORRENT
