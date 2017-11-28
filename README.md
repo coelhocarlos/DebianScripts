@@ -26,6 +26,10 @@ pré configured ports
 
 
 How to install script ---
+Install via wget https://github.com/coelhocarlos/debian9-install/blob/master/installdebian9.sh
+ls 
+chmod +x installdebian9.sh
+./installdebian9.sh
 
 Install debian 9 netinstall
 https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-9.0.0-amd64-netinst.iso
