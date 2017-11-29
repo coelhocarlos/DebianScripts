@@ -36,10 +36,9 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 apt-get install mysql-server
 mysql_secure_installation
 apt-get install apache2 -y
-add-apt-repository -y ppa:ondrej/php && sudo apt-get update
-apt-get install php7.2
-php7-xdebug -y
 systemctl restart apache2
+apt-get install php7.2 -y
+php7-xdebug -y
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
