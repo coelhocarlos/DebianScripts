@@ -22,9 +22,10 @@ apt-get update
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.860_all.deb
 dpkg --install webmin_1.860_all.deb
 # on error fault -> libraries -> 
+apt-get install -f
 # on port error /etc/init.d/webmin restart
 # editing /etc/webmin/miniserv.conf port 10000 to 10222
-apt-get install -f
+
 
 
 echo THIRDY PHP MYSQL APACHE NMAP SAMBA
@@ -38,6 +39,7 @@ apt-get install mysql-server
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
+apt-get install net-tools -y
 #  monitor lan
 apt-get install iptraf-ng -y 
 # case fault ifconfig
