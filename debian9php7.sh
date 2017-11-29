@@ -37,7 +37,8 @@ apt-get install mysql-server
 mysql_secure_installation
 apt-get install apache2 -y
 add-apt-repository -y ppa:ondrej/php && sudo apt-get update
-apt-get install php7.1-cli libapache2-mod-php7.1 php7.1-mysql php7.1-curl php-memcached php7.1-dev php7.1-mcrypt php7.1-sqlite3 php7.1-mbstring php7-xdebug -y
+apt-get install php7.2
+php7-xdebug -y
 systemctl restart apache2
 apt-get install phpmyadmin
 apt-get install nmap -y
