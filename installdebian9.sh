@@ -290,6 +290,7 @@ systemctl start netdata
 apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
 cd
 mkdir ~/.scripts
+cd ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
 cd 
 mkdir downloads 
