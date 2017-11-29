@@ -292,6 +292,7 @@ cd
 mkdir ~/.scripts
 cd ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
+wget https://raw.githubusercontent.com/coelhocarlos/sqldump/master/MysqlDump.sh
 cd 
 mkdir downloads 
 cd downloads 
