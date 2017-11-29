@@ -33,7 +33,7 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 
 apt-get update install
 apt-get install apache2 -y
-apt-get install apache2 php5-dev -y
+apt-get install php5-dev -y
 apt-get install php5-xdebug -y
 apt-get install mysql-server
 apt-get install phpmyadmin
