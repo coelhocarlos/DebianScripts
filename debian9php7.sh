@@ -11,7 +11,7 @@
 #addres to download ------>
 #http://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-8.7.1-i386-netinst.iso
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
-
+apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade
 #
 echo install WEBMIN 
 #-----------------------------------------
@@ -31,14 +31,19 @@ apt-get install -f
 echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 #----------------------------------------------------------------------
 
-apt-get update install
-apt-get install apache2 -y
-apt-get install php5-dev -y
-apt-get install php5-xdebug -y
+
+
 apt-get install mysql-server
+mysql_secure_installation
+apt-get install apache2 -y
+add-apt-repository -y ppa:ondrej/php && sudo apt-get update
+apt-get install php7.1-cli libapache2-mod-php7.1 php7.1-mysql php7.1-curl php-memcached php7.1-dev php7.1-mcrypt php7.1-sqlite3 php7.1-mbstring php7-xdebug -y
+systemctl restart apache2
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
 apt-get install net-tools -y
 #  monitor lan
 apt-get install iptraf-ng -y 
