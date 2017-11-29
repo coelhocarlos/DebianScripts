@@ -299,8 +299,8 @@ cd downloads
 wget http://ftp.br.debian.org/debian/pool/main/m/megatools/megatools_1.9.98-1_amd64.deb
 dpkg -i megatools_1.9.98-1_amd64.deb
 cd 
-cp /.megarc
-nano .megarc
+#cp ~/.megarc
+nano ~/.megarc
 #----------------------------------
 #[Login]
 #Username = 
