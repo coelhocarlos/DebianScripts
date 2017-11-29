@@ -288,10 +288,8 @@ systemctl start netdata
 #Iecho INSTALL MEGATools
 #--------------------------------------------------------------------
 apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
-adduser megabackup
-su - megabackup
 cd
-mkdir scripts
+mkdir ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
 cd 
 mkdir downloads 
@@ -299,7 +297,7 @@ cd downloads
 wget http://ftp.br.debian.org/debian/pool/main/m/megatools/megatools_1.9.98-1_amd64.deb
 dpkg -i megatools_1.9.98-1_amd64.deb
 cd 
-#cp ~/.megarc
+cp ~/.megarc
 nano ~/.megarc
 #----------------------------------
 #[Login]
