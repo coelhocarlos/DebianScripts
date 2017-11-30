@@ -298,6 +298,8 @@ mkdir ~/.scripts
 cd ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
 wget https://raw.githubusercontent.com/coelhocarlos/sqldump/master/MysqlDump.sh
+chmod +x megasend.sh
+chmod +x MysqlDump.sh
 cd 
 mkdir downloads 
 cd downloads 
