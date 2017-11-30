@@ -11,7 +11,7 @@
 #addres to download ------>
 #http://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-8.7.1-i386-netinst.iso
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
-apt-get update && sudo apt-get -y upgrade && sudo apt-get -y dist-upgrade
+apt-get update && apt-get -y upgrade &&  apt-get -y dist-upgrade
 #
 echo install WEBMIN 
 #-----------------------------------------
