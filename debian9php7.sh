@@ -20,7 +20,7 @@ echo install WEBMIN
 #----------------------------------------------------------------------
 apt-get update
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.860_all.deb
-dpkg --install webmin_1.860_all.deb
+dpkg --install webmin_1.870_all.deb
 # on error fault -> libraries -> 
 apt-get install -f
 # on port error /etc/init.d/webmin restart
@@ -108,6 +108,9 @@ cp init/supervisor_conf /etc/supervisor/conf.d/mineos.conf
 
 # start the background service
 supervisorctl reload
+#supervisorctl start mineos
+#supervisorctl stop mineos
+
 
 echo START INSTALL UTORRENT
 #-------------------------------
