@@ -19,8 +19,8 @@ echo install WEBMIN
 #in terminal server
 #----------------------------------------------------------------------
 apt-get update
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.860_all.deb
-dpkg --install webmin_1.870_all.deb
+wget https://prdownloads.sourceforge.net/webadmin/webmin_1.881_all.deb
+dpkg --install webmin_1.881_all.deb
 # on error fault -> libraries -> 
 apt-get install -f
 # on port error /etc/init.d/webmin restart
@@ -42,8 +42,6 @@ php7-xdebug -y
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
 apt-get install net-tools -y
 #  monitor lan
 apt-get install iptraf-ng -y 
@@ -229,6 +227,10 @@ iptables -A OUTPUT -p udp --sport  9987 -m conntrack --ctstate ESTABLISHED -j AC
 #---Allow All MINECRAFT
 iptables -A INPUT -p tcp --dport 25565 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 iptables -A OUTPUT -p tcp --sport 25565 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+#--Allow All PXE
+iptables -A INPUT -p ALL -i $INET_IFACE -s 192.168.0.0/24 -j ACCEPT
+iptables -A INPUT -p ALL -i $INET_IFACE -d 192.168.0.255 -j ACCEPT
+iptables -A udp_inbound -p UDP -s 0/0 --destination-port 69 -j ACCEPT
 #--Allow All QUAKE
 iptables -A INPUT -p udp -m udp --dport 27910:27912 -j ACCEPT
 #--Allow All CSTRIKE
