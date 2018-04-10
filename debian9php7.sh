@@ -53,10 +53,14 @@ apt-get install testdisk  -y
 apt-get install glances -y 
 # git
 apt-get install git bc -y
-#tftp
+# tftp PXE
 apt-get install tftpd-hpa
 apt-get install isc-dhcp-server
-
+apt-get install dnsmasq
+apt-get install genisoimage 
+apt-get install wimtools 
+apt-get install cabextract
+ln -s /usr/bin/genisoimage /usr/bin/mkisofs
 #-----------------------------------------------------------------------
 echo START  VAR/WWW modify to your user
 #-----------------------------------------------------------------------
