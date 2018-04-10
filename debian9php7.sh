@@ -53,6 +53,10 @@ apt-get install testdisk  -y
 apt-get install glances -y 
 # git
 apt-get install git bc -y
+#tftp
+apt-get install tftpd-hpa
+apt-get install isc-dhcp-server
+
 #-----------------------------------------------------------------------
 echo START  VAR/WWW modify to your user
 #-----------------------------------------------------------------------
