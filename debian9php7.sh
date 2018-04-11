@@ -55,7 +55,9 @@ apt-get install glances -y
 apt-get install git bc -y
 # tftp PXE
 apt-get install tftpd-hpa
+nano /etc/default/tftpd-hpa
 apt-get install isc-dhcp-server
+nano -w /etc/dhcp/dhcpd.conf
 apt-get install dnsmasq
 apt-get install genisoimage 
 apt-get install wimtools 
