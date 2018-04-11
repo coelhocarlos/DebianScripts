@@ -56,10 +56,13 @@ apt-get install git bc -y
 # tftp PXE
 apt-get install tftpd-hpa
 nano /etc/default/tftpd-hpa
+/etc/init.d/tftpd-hpa restart
 apt-get install isc-dhcp-server
 nano -w /etc/dhcp/dhcpd.conf
+service isc-dhcp-server restart
 apt-get install dnsmasq
 nano /etc/dnsmasq.conf
+/etc/init.d/dnsmasq restart
 apt-get install genisoimage 
 apt-get install wimtools 
 apt-get install cabextract
