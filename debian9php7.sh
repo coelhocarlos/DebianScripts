@@ -59,6 +59,7 @@ nano /etc/default/tftpd-hpa
 apt-get install isc-dhcp-server
 nano -w /etc/dhcp/dhcpd.conf
 apt-get install dnsmasq
+nano /etc/dnsmasq.conf
 apt-get install genisoimage 
 apt-get install wimtools 
 apt-get install cabextract
