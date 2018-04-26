@@ -172,6 +172,7 @@ ln -s /opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
 apt-get install gdebi -y
 wget  http://ftp.psu.ru/linux/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 wget  http://mirrors.kernel.org/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.12_amd64.deb
+wget  http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl-dev_1.0.1t-1+deb8u8_amd64.deb
 apt install gdebi dirmngr
 gdebi libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
 dpkg -i libssl-dev_1.0.1t-1+deb8u6_amd64.deb
