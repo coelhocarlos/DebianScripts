@@ -66,6 +66,7 @@ service isc-dhcp-server restart
 apt-get install dnsmasq
 nano /etc/dnsmasq.conf
 /etc/init.d/dnsmasq restart
+
 nano /etc/network/interfaces
 apt-get install genisoimage 
 apt-get install wimtools 
