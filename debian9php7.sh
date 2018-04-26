@@ -66,8 +66,9 @@ service isc-dhcp-server restart
 apt-get install dnsmasq
 nano /etc/dnsmasq.conf
 /etc/init.d/dnsmasq restart
-
-nano /etc/network/interfaces
+cd /etc/network/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
+/etc/init.d/networking restart
 apt-get install genisoimage 
 apt-get install wimtools 
 apt-get install cabextract
