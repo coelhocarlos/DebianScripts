@@ -381,4 +381,5 @@ nano ~/.megarc
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
 
-/etc/init.d/networking restart
+
+apt-get update && apt-get -y upgrade &&  apt-get -y dist-upgrade
