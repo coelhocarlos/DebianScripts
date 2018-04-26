@@ -40,15 +40,34 @@ systemctl restart apache2
 apt-get install php7.2 -y
 apt-get install mcrypt php7.0-mcrypt -y
 apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql
-php7-xdebug -y
+#sdebug
+apt-get install make -y
+# Download stable release of xdebug 2.4.0
+wget -c "http://xdebug.org/files/xdebug-2.4.0.tgz"
+# Extract archive
+tar -xf xdebug-2.4.0.tgz
+cd xdebug-2.4.0/
+# build extension
+phpize
+./configure
+make && make install
+echo "zend_extension=xdebug.so" > /etc/php/7.0/mods-available/xdebug.ini
+ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/fpm/conf.d/20-xdebug.ini
+ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.ini
+service php7.0-fpm restart
+# Check it
+php -m | grep -i xdebug
+# should print:
+xdebug
+Xdebug
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
-apt-get install net-tools -y
+apt-get install ntfs-3g -y
 #  monitor lan
 apt-get install iptraf-ng -y 
 # case fault ifconfig
-apt-get install install net-tools -y 
+apt-get install net-tools -y
 #  recover images
 apt-get install testdisk  -y 
 # monitor your Server ---  Start $glances
