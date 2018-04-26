@@ -54,6 +54,11 @@ apt-get install testdisk  -y
 apt-get install glances -y 
 # git
 apt-get install git bc -y
+#mount
+mkdir /media/hd320
+mkdir /media/hd2000
+mount -t ntfs-3g /dev/sdc1 /media/hd320
+mount -t ntfs-3g /dev/sdd1 /media/hd2000
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
