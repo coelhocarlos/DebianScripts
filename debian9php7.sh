@@ -75,8 +75,10 @@ cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.old
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
 rm /etc/dhcp/dhcpd.conf
 rm /etc/default/isc-dhcp-server
+cd /etc/default/
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/isc-dhcp-server
+cd
 cd /etc/dhcp/
-wget
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
 cd 
 service isc-dhcp-server restart
