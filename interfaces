@@ -10,9 +10,9 @@ iface lo inet loopback
 # The primary network interface
 allow-hotplug ens130
 iface ens130 inet static
-        address 192.168.0.1
+        address 192.168.0.50
         netmask 255.255.255.0
-        network 192.168.0.0
+        network 192.168.0.1
         broadcast 192.168.0.255
 # This is an autoconfigured IPv6 interface
 iface ens130 inet6 auto
