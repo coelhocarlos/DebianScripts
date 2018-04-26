@@ -38,6 +38,7 @@ mysql_secure_installation
 apt-get install apache2 -y
 systemctl restart apache2
 apt-get install php7.2 -y
+apt-get install mcrypt php7.0-mcrypt -y
 apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql
 php7-xdebug -y
 apt-get install phpmyadmin
