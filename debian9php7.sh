@@ -64,21 +64,28 @@ mount -t ntfs-3g /dev/sdd1 /media/hd2000
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
+cp /etc/default//tftpd-hpa /etc/default/tftpd-hpa.old
+rm /etc/default/tftpd-hpa
 cd /etc/default/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
 /etc/init.d/tftpd-hpa restart
 cd 
 apt-get install isc-dhcp-server
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
+rm /etc/dhcp/dhcpd.conf
 cd /etc/dhcp/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
 cd 
 service isc-dhcp-server restart
 apt-get install dnsmasq
+cp /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+rm /etc/dnsmasq.conf
 cd /etc/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsmasq.conf
 /etc/init.d/dnsmasq restart
 cd 
+cp /etc/network/interfaces /etc/network/interfaces.old
+rm /etc/network/interfaces
 cd /etc/network/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
 #/etc/init.d/networking restart
