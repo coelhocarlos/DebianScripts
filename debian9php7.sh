@@ -56,7 +56,9 @@ apt-get install glances -y
 apt-get install git bc -y
 # tftp PXE
 apt-get install tftpd-hpa
-nano /etc/default/tftpd-hpa
+#nano /etc/default/tftpd-hpa
+cd /etc/default/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
 /etc/init.d/tftpd-hpa restart
 apt-get install isc-dhcp-server
 nano -w /etc/dhcp/dhcpd.conf
