@@ -64,6 +64,8 @@ apt-get install isc-dhcp-server
 nano -w /etc/dhcp/dhcpd.conf
 service isc-dhcp-server restart
 apt-get install dnsmasq
+cd /etc/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsmasq.conf
 nano /etc/dnsmasq.conf
 /etc/init.d/dnsmasq restart
 cd /etc/network/
