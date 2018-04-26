@@ -58,9 +58,9 @@ apt-get install git bc -y
 mkdir /media/hd160
 mkdir /media/hd320
 mkdir /media/hd2000
-mount -t ntfs-3g /dev/sdb /media/hd160
-mount -t ntfs-3g /dev/sdc /media/hd320
-mount -t ntfs-3g /dev/sdd /media/hd2000
+mount -t ntfs-3g /dev/sdb1 /media/hd160
+mount -t ntfs-3g /dev/sdc1 /media/hd320
+mount -t ntfs-3g /dev/sdd1 /media/hd2000
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
