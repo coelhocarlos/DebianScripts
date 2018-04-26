@@ -67,17 +67,26 @@ apt-get install tftpd-hpa
 cd /etc/default/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
 /etc/init.d/tftpd-hpa restart
+cd 
+cd /downloads
 apt-get install isc-dhcp-server
-nano -w /etc/dhcp/dhcpd.conf
+cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
+cd /etc/dhcp/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
+cd 
+cd /downloads
 service isc-dhcp-server restart
 apt-get install dnsmasq
 cd /etc/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsmasq.conf
-nano /etc/dnsmasq.conf
 /etc/init.d/dnsmasq restart
+cd 
+cd /downloads
 cd /etc/network/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
 /etc/init.d/networking restart
+cd 
+cd /downloads
 apt-get install genisoimage 
 apt-get install wimtools 
 apt-get install cabextract
