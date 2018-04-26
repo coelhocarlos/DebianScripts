@@ -81,7 +81,7 @@ wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsma
 cd 
 cd /etc/network/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
-/etc/init.d/networking restart
+#/etc/init.d/networking restart
 cd 
 apt-get install genisoimage 
 apt-get install wimtools 
@@ -368,4 +368,4 @@ nano ~/.megarc
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
 
-
+/etc/init.d/networking restart
