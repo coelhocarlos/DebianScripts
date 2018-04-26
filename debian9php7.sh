@@ -94,7 +94,7 @@ cp /etc/network/interfaces /etc/network/interfaces.old
 rm /etc/network/interfaces
 cd /etc/network/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
-#/etc/init.d/networking restart
+/etc/init.d/networking restart
 cd 
 apt-get install genisoimage 
 apt-get install wimtools 
