@@ -81,6 +81,11 @@ mkdir /media/hd2000
 mount -t ntfs-3g /dev/sdb1 /media/hd160
 mount -t ntfs-3g /dev/sdc1 /media/hd320
 mount -t ntfs-3g /dev/sdd1 /media/hd2000
+cp /etc/fstab /etc/fstab.old
+rm /etc/fstab
+cd /etc/
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/fstab
+cd
 #samba config
 cp /etc/samba/smb.conf /etc/samba/smb.conf.old
 rm /etc/samba/smb.conf
