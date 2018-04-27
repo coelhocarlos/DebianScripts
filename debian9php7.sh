@@ -81,6 +81,12 @@ mkdir /media/hd2000
 mount -t ntfs-3g /dev/sdb1 /media/hd160
 mount -t ntfs-3g /dev/sdc1 /media/hd320
 mount -t ntfs-3g /dev/sdd1 /media/hd2000
+#samba config
+cp /etc/samba/smb.conf /etc/samba/smb.conf.old
+rm /etc/samba/smb.conf
+cd /etc/samba/
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/smb.conf
+cd
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
