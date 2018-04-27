@@ -90,7 +90,7 @@ cd
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
-cp /etc/default//tftpd-hpa /etc/default/tftpd-hpa.old
+cp /etc/default/tftpd-hpa /etc/default/tftpd-hpa.old
 rm /etc/default/tftpd-hpa
 cd /etc/default/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
