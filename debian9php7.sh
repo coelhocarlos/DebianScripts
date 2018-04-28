@@ -92,6 +92,7 @@ rm /etc/samba/smb.conf
 cd /etc/samba/
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/smb.conf
 cd
+------------------------------------------------------------------------------------
 # tftp PXE
 apt-get install tftpd-hpa
 #nano /etc/default/tftpd-hpa
@@ -126,6 +127,7 @@ cd /etc/network/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
 /etc/init.d/networking restart
 cd 
+------------------------------------------------------------------------
 apt-get install genisoimage 
 apt-get install wimtools 
 apt-get install cabextract
@@ -212,6 +214,7 @@ utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 echo INIT AS SERVICE UTORRENT
 #--------------------
 
+
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/utorrent
 chmod 755 utorrent
 cp utorrent /etc/init.d/
@@ -229,6 +232,17 @@ echo END INSTALL UTORRENT
 #need remove 
 #update-rc.d utorrent remove
 #---
+
+#GUACAMOLE
+----------------------------------------
+apt-get install guacamole
+apt-get install libfreerdp-dev
+apt-get install libssl-dev 
+apt-get install libvorbis-dev
+apt-get install libtool libtool-bin
+apt-get install libjpeg-dev
+-----------------------------------------
+
 #------------------------
 echo  IPTABLES RULES
 #------------------------
