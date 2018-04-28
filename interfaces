@@ -14,7 +14,7 @@ iface ens130 inet static
         address 192.168.0.50
         netmask 255.255.255.0
         network 192.168.0.0
-        broadcast 192.168.0.100
+        broadcast 192.168.0.50
         gateway 192.168.0.1
 # This is an autoconfigured IPv6 interface
 iface ens130 inet6 auto
