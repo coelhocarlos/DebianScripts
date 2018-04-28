@@ -225,12 +225,12 @@ echo END INSTALL UTORRENT
 
 #GUACAMOLE
 ----------------------------------------
-apt-get install guacamole
-apt-get install libfreerdp-dev
-apt-get install libssl-dev 
-apt-get install libvorbis-dev
-apt-get install libtool libtool-bin
-apt-get install libjpeg-dev
+#apt-get install guacamole
+#apt-get install libfreerdp-dev
+#apt-get install libssl-dev 
+#apt-get install libvorbis-dev
+#apt-get install libtool libtool-bin
+#apt-get install libjpeg-dev
 -----------------------------------------
 
 #------------------------
