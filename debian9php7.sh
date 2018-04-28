@@ -141,19 +141,8 @@ chown www-data:www-data -R *
 chown root:root -R *
 chown zombie:zombie -R *
 /etc/init.d/apache2 restart
-#-----------------------------------------------------------------------
-echo INSTALL  DNS NO-IP START
-#----------------------------------------------------------------------
 
-cd /usr/local/src
-wget http://www.no-ip.com/client/linux/noip-duc-linux.tar.gz
-tar xzf noip-duc-linux.tar.gz
-cd noip-2.1.9-1
-make
-#configure 
-make install
-#
-#----------------------------------------------------------------------
+
 #----------------------------------------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
 #-----------------------------------------
