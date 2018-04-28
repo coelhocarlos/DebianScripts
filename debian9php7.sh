@@ -57,9 +57,7 @@ ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.
 service php7.0-fpm restart
 # Check it
 php -m | grep -i xdebug
-# should print:
-xdebug
-Xdebug
+
 apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
