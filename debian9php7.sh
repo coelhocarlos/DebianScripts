@@ -91,6 +91,7 @@ cp /etc/samba/smb.conf /etc/samba/smb.conf.old
 rm /etc/samba/smb.conf
 cd /etc/samba/
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/smb.conf
+service smbd restart
 cd
 ------------------------------------------------------------------------------------
 # tftp PXE
