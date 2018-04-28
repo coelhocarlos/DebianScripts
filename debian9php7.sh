@@ -93,7 +93,7 @@ service smbd restart
 cd
 ------------------------------------------------------------------------------------
 # tftp PXE
-apt-get install tftpd-hpa
+apt-get install tftpd-hpa -y
 #nano /etc/default/tftpd-hpa
 cp /etc/default/tftpd-hpa /etc/default/tftpd-hpa.old
 rm /etc/default/tftpd-hpa
@@ -101,7 +101,7 @@ cd /etc/default/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
 /etc/init.d/tftpd-hpa restart
 cd 
-apt-get install isc-dhcp-server
+apt-get install isc-dhcp-server -y
 cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.old
 cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
 rm /etc/dhcp/dhcpd.conf
@@ -113,7 +113,7 @@ cd /etc/dhcp/
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
 cd 
 service isc-dhcp-server restart
-apt-get install dnsmasq
+apt-get install dnsmasq -y
 cp /etc/dnsmasq.conf /etc/dnsmasq.conf.old
 rm /etc/dnsmasq.conf
 cd /etc/
