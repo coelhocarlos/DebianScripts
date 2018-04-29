@@ -89,6 +89,11 @@ cd /etc/samba/
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/smb.conf
 service smbd restart
 cd
+cp /etc/motd /etc/motd.old
+rm /etc/motd
+cd /etc/
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/motd
+cd
 ------------------------------------------------------------------------------------
 # tftp PXE
 apt-get install tftpd-hpa -y
