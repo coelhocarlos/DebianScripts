@@ -75,6 +75,7 @@ apt-get install git bc -y
 # non free drivers
 cp /etc/apt/source.list /etc/apt/source.list.old
 rm /etc/apt/source.list
+cd /etc/apt/
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
 apt-get update
 apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free
