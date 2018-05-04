@@ -8,7 +8,7 @@ MENU TITLE BOOT LAN PXE by Zombie The Z3r0!
 LABEL WinPE64
     MENU LABEL Install WinPE Windows x64
     KERNEL /memdisk
-    INITRD /images/winPE_amd64/winpe_amd64.iso root=net use z: \\192.168.0.50\wds_share\images\win10 /u:zombie 1q2w3e
+    INITRD /images/winPE_amd64/winpe_amd64.iso
     APPEND iso raw 
 
 LABEL WinPE86
@@ -49,11 +49,17 @@ LABEL GHOST
   INITRD /images/ghost/Symantec.Ghost.11.5.Corporate.DOS.Boot.CD.iso
   APPEND iso raw
 
-
 LABEL CLONEZILLA
     MENU LABEL Start Clonezilla live
     KERNEL images/clonezilla/vmlinuz
     APPEND initrd=/images/clonezilla/initrd.img boot=live username=user union=overlay components noswap noprompt vga=788 keyboard-layouts=en locales=en_GB.UTF-8 fetch=tftp://192.168.0.50/images/clonezilla/filesystem.squashfs
+
+label PARTMAGIC
+MENU LABEL Start Partiton Magic
+LINUX  /memdisk
+INITRD /images/pmagic/pmagic_2013_06_14_i586.iso load_ramdisk=1 prompt_ramdisk=0 rw sleep=10
+APPEND iso raw
+
 MENU SEPARATOR
 
 LABEL local
