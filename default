@@ -61,8 +61,7 @@ INITRD /images/pmagic/pmagic_2018_01_08.iso load_ramdisk=1 prompt_ramdisk=0 rw s
 APPEND iso raw
 
 LABEL GParted
-MENU LABEL Start Gparted
-            MENU LABEL GParted Live
+            MENU LABEL Start GParted Live
             kernel /images/gparted/live/vmlinuz
             append initrd=/images/gparted/live/initrd.img boot=live config components union=overlay username=user noswap noeject ip= vga=788 fetch=tftp://192.168.0.50/images/gparted/live/filesystem.squashfs
 MENU SEPARATOR
