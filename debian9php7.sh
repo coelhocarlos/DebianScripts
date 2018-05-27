@@ -40,6 +40,7 @@ systemctl restart apache2
 apt-get install php7.2 -y
 apt-get install mcrypt php7.0-mcrypt -y
 apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql
+mysql_secure_installation
 #sdebug
 apt-get install make -y
 # Download stable release of xdebug 2.4.0
