@@ -25,7 +25,8 @@ dpkg --install webmin_1.881_all.deb
 apt-get install -f -y
 # on port error /etc/init.d/webmin restart
 # editing /etc/webmin/miniserv.conf port 10000 to 10222
-
+nano /etc/webmin/miniserv.conf
+/etc/init.d/webmin restart
 
 
 echo THIRDY PHP MYSQL APACHE NMAP SAMBA
