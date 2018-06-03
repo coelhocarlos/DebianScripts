@@ -77,15 +77,16 @@ apt-get install git bc -y
 cp /etc/apt/source.list /etc/apt/source.list.old
 rm /etc/apt/source.list
 cd /etc/apt/
+cd
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
 apt-get update
 apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free
 cd 
 #mount
-mkdir /media/hd160
+#mkdir /media/hd160
 mkdir /media/hd2000
-mount -t ntfs-3g /dev/sdb1 /media/hd160
-mount -t ntfs-3g /dev/sdc1 /media/hd2000
+#mount -t ntfs-3g /dev/sdb1 /media/hd160
+mount -t ntfs-3g /dev/sdb1 /media/hd2000
 cp /etc/fstab /etc/fstab.old
 rm /etc/fstab
 cd /etc/
