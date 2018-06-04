@@ -83,10 +83,10 @@ apt-get install git bc -y
 cp /etc/apt/source.list /etc/apt/source.list.old
 rm /etc/apt/source.list
 cd /etc/apt/
-#cd
-#wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
-#apt-get update
-#apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free
+cd
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
+apt-get update
+apt-get install firmware-linux-nonfree
 cd 
 #mount
 #mkdir /media/hd160
