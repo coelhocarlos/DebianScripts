@@ -33,7 +33,10 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 #----------------------------------------------------------------------
 
 
-
+apt-get install sudo -y
+visudo
+#nano /etc/sudoers
+#SEU_USUARIO ALL=(ALL:ALL) ALL
 apt-get install mysql-server
 mysql_secure_installation
 apt-get install apache2 -y
