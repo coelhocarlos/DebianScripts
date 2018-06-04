@@ -83,10 +83,10 @@ apt-get install git bc -y
 cp /etc/apt/source.list /etc/apt/source.list.old
 rm /etc/apt/source.list
 cd /etc/apt/
-cd
-wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
-apt-get update
-apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free
+#cd
+#wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources.list
+#apt-get update
+#apt-get install firmware-realtek firmware-linux-nonfree firmware-linux-free
 cd 
 #mount
 #mkdir /media/hd160
@@ -123,7 +123,16 @@ cd /var/www
 chown www-data:www-data -R *
 chown root:root -R *
 chown zombie:zombie -R *
+cd
+cd /var/www/server/
+chown www-data:www-data -R *
+chown zombie:zombie -R *
+cd
+cd /var/www/public/
+chown www-data:www-data -R *
+chown zombie:zombie -R *
 /etc/init.d/apache2 restart
+cd
 
 
 #----------------------------------------------------------------------
