@@ -93,10 +93,10 @@ cd
 mkdir /media/hd2000
 #mount -t ntfs-3g /dev/sdb1 /media/hd160
 mount -t ntfs-3g /dev/sdb1 /media/hd2000
-cp /etc/fstab /etc/fstab.old
-rm /etc/fstab
-cd /etc/
-wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/fstab
+#cp /etc/fstab /etc/fstab.old
+#rm /etc/fstab
+#cd /etc/
+#wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/fstab
 cd
 #samba config
 cp /etc/samba/smb.conf /etc/samba/smb.conf.old
@@ -345,28 +345,7 @@ git clone https://github.com/letsencrypt/letsencrypt
 #---------------------------
    echo END letsencrypt
 #--------------------------
-#---------------------------
-   echo Netdata INSTALL
-#--------------------------
-apt-get install uuid-dev
-curl -Ss 'https://raw.githubusercontent.com/firehol/netdata-demo-site/master/install-required-packages.sh' >/tmp/kickstart.sh && bash /tmp/kickstart.sh -i netdata-all
-apt-get install zlib1g-dev uuid-dev libmnl-dev gcc make git autoconf autoconf-archive autogen automake pkg-config curl
-git clone https://github.com/firehol/netdata.git --depth=1
-cd netdata
-./netdata-installer.sh
-# stop netdata
-killall netdata
-# copy netdata.service to systemd
-cp system/netdata.service /etc/systemd/system/
-# let systemd know there is a new service
-systemctl daemon-reload
-# enable netdata at boot
-systemctl enable netdata
-# start netdata
-systemctl start netdata
-#---------------------------
-   echo Netdata END
-#--------------------------
+
 
 #------------------------------------------------------------------
 #Iecho INSTALL MEGATools
