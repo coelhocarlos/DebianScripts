@@ -64,6 +64,8 @@ apt-get install phpmyadmin
 apt-get install nmap -y
 apt-get install samba -y
 apt-get install ntfs-3g -y
+#drivers impressora
+apt-get install hplip
 #  monitor lan
 apt-get install iptraf-ng -y 
 # case fault ifconfig
