@@ -38,13 +38,12 @@ visudo
 #nano /etc/sudoers
 #SEU_USUARIO ALL=(ALL:ALL) ALL
 apt-get install mysql-server
-mysql_secure_installation
 apt-get install apache2 -y
 systemctl restart apache2
 apt-get install php7.2 -y
 apt-get install mcrypt php7.0-mcrypt -y
-apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql
-mysql_secure_installation
+apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql -y
+
 #sdebug
 apt-get install make -y
 # Download stable release of xdebug 2.4.0
@@ -64,6 +63,7 @@ service php7.0-fpm restart
 php -m | grep -i xdebug
 
 apt-get install phpmyadmin
+mysql_secure_installation
 apt-get install nmap -y
 apt-get install samba -y
 apt-get install ntfs-3g -y
@@ -112,9 +112,9 @@ wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/motd
 
 cd 
 ------------------------------------------------------------------------
-apt-get install genisoimage 
-apt-get install wimtools 
-apt-get install cabextract
+apt-get install genisoimage -y
+apt-get install wimtools -y
+apt-get install cabextract -y
 ln -s /usr/bin/genisoimage /usr/bin/mkisofs
 #-----------------------------------------------------------------------
 echo START  VAR/WWW modify to your user
