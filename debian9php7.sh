@@ -65,7 +65,7 @@ apt-get install nmap -y
 apt-get install samba -y
 apt-get install ntfs-3g -y
 #drivers impressora
-apt-get install hplip
+apt-get install hplip -y
 #  monitor lan
 apt-get install iptraf-ng -y 
 # case fault ifconfig
@@ -106,42 +106,7 @@ cp /etc/motd /etc/motd.old
 rm /etc/motd
 cd /etc/
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/motd
-cd
-------------------------------------------------------------------------------------
-# tftp PXE
-apt-get install tftpd-hpa -y
-#nano /etc/default/tftpd-hpa
-cp /etc/default/tftpd-hpa /etc/default/tftpd-hpa.old
-rm /etc/default/tftpd-hpa
-cd /etc/default/
-wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
-/etc/init.d/tftpd-hpa restart
-cd 
-apt-get install dnsmasq -y
-cp /etc/dnsmasq.conf /etc/dnsmasq.conf.old
-rm /etc/dnsmasq.conf
-cd /etc/
-wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsmasq.conf
-/etc/init.d/dnsmasq restart
-cd 
-apt-get install isc-dhcp-server -y
-cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.old
-cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
-rm /etc/dhcp/dhcpd.conf
-rm /etc/default/isc-dhcp-server
-cd /etc/default/
-wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/isc-dhcp-server
-cd
-cd /etc/dhcp/
-wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
-cd 
-service isc-dhcp-server restart
 
-cp /etc/network/interfaces /etc/network/interfaces.old
-rm /etc/network/interfaces
-cd /etc/network/
-wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
-/etc/init.d/networking restart
 cd 
 ------------------------------------------------------------------------
 apt-get install genisoimage 
@@ -430,6 +395,42 @@ nano ~/.megarc
 
 #Reboot to make sure it all works
 ## FINISH ALL INSTALED ##
+cd
+------------------------------------------------------------------------------------
+# tftp PXE
+apt-get install tftpd-hpa -y
+#nano /etc/default/tftpd-hpa
+cp /etc/default/tftpd-hpa /etc/default/tftpd-hpa.old
+rm /etc/default/tftpd-hpa
+cd /etc/default/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/tftpd-hpa
+/etc/init.d/tftpd-hpa restart
+cd 
+apt-get install dnsmasq -y
+cp /etc/dnsmasq.conf /etc/dnsmasq.conf.old
+rm /etc/dnsmasq.conf
+cd /etc/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dnsmasq.conf
+/etc/init.d/dnsmasq restart
+cd 
+apt-get install isc-dhcp-server -y
+cp /etc/default/isc-dhcp-server /etc/default/isc-dhcp-server.old
+cp /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.old
+rm /etc/dhcp/dhcpd.conf
+rm /etc/default/isc-dhcp-server
+cd /etc/default/
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/isc-dhcp-server
+cd
+cd /etc/dhcp/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/dhcpd.conf
+cd 
+service isc-dhcp-server restart
 
+cp /etc/network/interfaces /etc/network/interfaces.old
+rm /etc/network/interfaces
+cd /etc/network/
+wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/interfaces
+/etc/init.d/networking restart
 
 apt-get update && apt-get -y upgrade &&  apt-get -y dist-upgrade
+echo ## FINISH ALL INSTALED ##
