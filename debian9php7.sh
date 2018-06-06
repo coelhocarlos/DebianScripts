@@ -342,23 +342,28 @@ service teamspeak3 start
 git clone https://github.com/letsencrypt/letsencrypt
 ./letsencrypt-auto certonly --standalone --email saheetha1@gmail.com --agree-tos -d nodenixbox.com
 
-#---------------------------
-   echo END letsencrypt
-#--------------------------
-
-
-#------------------------------------------------------------------
-#Iecho INSTALL MEGATools
-#--------------------------------------------------------------------
-apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
+#-----------------------------
+   #echo END letsencrypt
+#-----------------------------
+#-----------------------------
+#Install default serve scripts
+#------------------------------
 cd
 mkdir ~/.scripts
 cd ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
 wget https://raw.githubusercontent.com/coelhocarlos/sqldump/master/MysqlDump.sh
+wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/duck.sh
 chmod +x megasend.sh
 chmod +x MysqlDump.sh
-cd 
+chmod +x duck.sh
+cd
+
+#------------------------------------------------------------------
+#Iecho INSTALL MEGATools
+#--------------------------------------------------------------------
+apt-get -y install build-essential libglib2.0-dev libssl-dev \ libcurl4-openssl-dev libgirepository1.0-dev
+ 
 mkdir downloads 
 cd downloads 
 wget http://ftp.br.debian.org/debian/pool/main/m/megatools/megatools_1.9.98-1_amd64.deb
