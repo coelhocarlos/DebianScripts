@@ -35,33 +35,37 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 
 apt-get install sudo -y
 visudo
+apt-get install make -y
 #nano /etc/sudoers
 #SEU_USUARIO ALL=(ALL:ALL) ALL
 apt-get install mysql-server
 apt-get install apache2 -y
 systemctl restart apache2
+###############PHP############################
+apt-get install php7.1-dev -y
 apt-get install php7.2 -y
-apt-get install mcrypt php7.0-mcrypt -y
-apt-get install libapache2-mod-php7.2 php7.2-mcrypt php7.2-mysql -y
-
-#sdebug
-apt-get install make -y
-# Download stable release of xdebug 2.4.0
-wget -c "http://xdebug.org/files/xdebug-2.4.0.tgz"
-# Extract archive
-tar -xf xdebug-2.4.0.tgz
-cd xdebug-2.4.0/
-# build extension
+apt-get install libapache2-mod-php7.2 -y
+apt-get install php7.2-mcrypt -Y
+apt-get install php7.2-mysql -y
+###############################################
+###################Xdebug######################
+sudo apt-get install php7.0-dev
+wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz
+tar -xzf xdebug-2.4.0rc2.tgz
+cd xdebug-2.4.0RC2/
 phpize
-./configure
-make && make install
-echo "zend_extension=xdebug.so" > /etc/php/7.0/mods-available/xdebug.ini
-ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/fpm/conf.d/20-xdebug.ini
-ln -sf /etc/php/7.0/mods-available/xdebug.ini /etc/php/7.0/cli/conf.d/20-xdebug.ini
-service php7.0-fpm restart
-# Check it
-php -m | grep -i xdebug
-
+./configure --enable-xdebug
+make
+sudo cp modules/xdebug.so /usr/lib/.
+#FOR FPM
+sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
+sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
+#FOR CLI
+sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/cli/conf.d/20-xdebug.ini 
+sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
+#RESTART 
+sudo service php7.0-fpm restart
+#################################################
 apt-get install phpmyadmin
 mysql_secure_installation
 apt-get install nmap -y
