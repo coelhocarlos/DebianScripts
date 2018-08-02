@@ -35,36 +35,59 @@ echo THIRDY PHP MYSQL APACHE NMAP SAMBA
 
 apt-get install sudo -y
 visudo
+# users
+sudo adduser pedro
+sudo adduser andre
+sudo usermod -aG sudo pedro
+sudo usermod -aG sudo andre
 apt-get install make -y
 #nano /etc/sudoers
 #SEU_USUARIO ALL=(ALL:ALL) ALL
 apt-get install mysql-server
-apt-get install apache2 -y
-systemctl restart apache2
+
+
+##################APACHE######################
+    sudo apt install -y apache2 apache2-utils libapache2-mod-php wget
+   
+    sudo a2enmod auth_digest ssl reqtimeout
+    #sudo ufw app list 
+    
+    echo "Timeout 30" >> /etc/apache2/apache2.conf
+    echo "ServerSignature Off" >> /etc/apache2/apache2.conf
+    echo "ServerTokens Prod" >> /etc/apache2/apache2.conf
+    
+    sudo mkdir -p /var/www/server 
+    sudo mkdir -p /var/www/public
+    
+    sudo chown -R www-data:www-data
+    sudo chown -R $zombie:$zombie /var/www/html 
+    sudo chown -R $zombie:$zombie /var/www/server 
+    sudo chown -R $zombie:$zombie /var/www/public 
+
+    sudo chmod -R 755 /var/www/html
+    sudo chmod -R 755 /var/www/public
+    sudo chmod -R 755 /var/www/server
+    
+    sudo systemctl restart apache2
+    sudo mkdir /etc/apache2/ssl
+    sudo openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.pem -out /etc/apache2/ssl/apache.pem
+    sudo chmod 600 /etc/apache2/ssl/apache.pem
+
+    sudo a2ensite default-ssl
+    sudo systemctl restart apache2
 ###############PHP############################
-apt-get install php7.1-dev -y
-apt-get install php7.2 -y
-apt-get install libapache2-mod-php7.2 -y
-apt-get install php7.2-mcrypt -Y
-apt-get install php7.2-mysql -y
-###############################################
-###################Xdebug######################
-sudo apt-get install php7.0-dev
-wget http://xdebug.org/files/xdebug-2.4.0rc2.tgz
-tar -xzf xdebug-2.4.0rc2.tgz
-cd xdebug-2.4.0RC2/
-phpize
-./configure --enable-xdebug
-make
-sudo cp modules/xdebug.so /usr/lib/.
-#FOR FPM
-sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
-sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/fpm/conf.d/20-xdebug.ini 
-#FOR CLI
-sudo echo 'zend_extension="/usr/lib/xdebug.so"' > /etc/php/7.0/cli/conf.d/20-xdebug.ini 
-sudo echo 'xdebug.remote_enable=1' >> /etc/php/7.0/cli/conf.d/20-xdebug.ini
-#RESTART 
-sudo service php7.0-fpm restart
+    sudo apt install -y php7.2 libapache2-mod-php7.2 wget
+    sudo apt-get -y install php7.2-mysql php7.2-curl php-fpm php7.2-gd php7.2-intl php-pear php-imagick php7.2-imap php-memcache  php7.2-pspell php7.2-recode php7.2-sqlite3 php7.2-tidy php7.2-xmlrpc php7.2-xsl php7.2-mbstring php-gettext
+    sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/x/xdebug/php-xdebug_2.6.0-0ubuntu1_amd64.deb
+    sudo dpkg -i php-xdebug_2.6.0-0ubuntu1_amd64.deb
+    sudo systemctl restart apache2 
+    sudo apt-get -y install php7.2-opcache php-apcu
+    sudo systemctl restart apache2 
+    sudo a2enmod ssl 
+    sudo systemctl restart apache2
+    sudo a2ensite default-ssl
+    sudo systemctl restart apache2
+  
 #################################################
 apt-get install phpmyadmin
 mysql_secure_installation
@@ -92,6 +115,9 @@ wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/sources
 apt-get update
 apt-get install firmware-linux-nonfree
 cd 
+
+
+
 #mount
 #mkdir /media/hd160
 mkdir /media/hd2000
@@ -120,24 +146,6 @@ apt-get install genisoimage -y
 apt-get install wimtools -y
 apt-get install cabextract -y
 ln -s /usr/bin/genisoimage /usr/bin/mkisofs
-#-----------------------------------------------------------------------
-echo START  VAR/WWW modify to your user
-#-----------------------------------------------------------------------
-cd /var/www
-chown www-data:www-data -R *
-chown root:root -R *
-chown zombie:zombie -R *
-cd
-cd /var/www/server/
-chown www-data:www-data -R *
-chown zombie:zombie -R *
-cd
-cd /var/www/public/
-chown www-data:www-data -R *
-chown zombie:zombie -R *
-/etc/init.d/apache2 restart
-cd
-
 
 #----------------------------------------------------------------------
 #http://minecraft.codeemo.com/mineoswiki/index.php?title=MineOS-node_(apt-get)
@@ -188,13 +196,11 @@ ln -s /opt/utorrent-server-alpha-v3_3/utserver /usr/bin/utserver
 # apt-get install libssl1.0.0 libssl-dev original squeze
 # for debian stretch
 apt-get install gdebi -y
-wget  http://ftp.psu.ru/linux/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
-wget  http://mirrors.kernel.org/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.12_amd64.deb
-wget  http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl-dev_1.0.1t-1+deb8u8_amd64.deb
+wget  http://security.debian.org/debian-security/pool/updates/main/o/openssl/libssl1.0.0_1.0.1t-1+deb8u9_amd64.deb
+wget  http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb
 apt install gdebi dirmngr
-gdebi libssl1.0.0_1.0.1t-1+deb8u6_amd64.deb
-dpkg -i libssl-dev_1.0.1t-1+deb8u6_amd64.deb
-dpkg -i libssl1.0.0_1.0.2g-1ubuntu4.1_amd64.deb
+dpkg -i libssl1.0.0_1.0.1t-1+deb8u9_amd64.deb
+dpkg -i libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 #--------------------------
 echo INIT AS SERVICE UTORRENT
@@ -218,6 +224,10 @@ echo END INSTALL UTORRENT
 #need remove 
 #update-rc.d utorrent remove
 #---
+
+#-------------------------------------- MEDIA SERVE PLEX
+wget https://downloads.plex.tv/plex-media-server/1.13.4.5251-2e6e8f841/plexmediaserver_1.13.4.5251-2e6e8f841_amd64.deb
+dpkg -i plexmediaserver_1.13.4.5251-2e6e8f841_amd64.deb
 
 #GUACAMOLE
 ----------------------------------------
@@ -338,28 +348,15 @@ service teamspeak3 start
 #---------------------------
    echo END TEAMSPEAK
 #--------------------------
-#---------------------------
-   echo letsencrypt
-#--------------------------
 
-#cd downloads
-git clone https://github.com/letsencrypt/letsencrypt
-./letsencrypt-auto certonly --standalone --email saheetha1@gmail.com --agree-tos -d nodenixbox.com
-
-#-----------------------------
-   #echo END letsencrypt
-#-----------------------------
-#-----------------------------
-#Install default serve scripts
-#------------------------------
 cd
 mkdir ~/.scripts
 cd ~/.scripts
 wget https://raw.githubusercontent.com/coelhocarlos/meganz/master/megasend.sh
-wget https://raw.githubusercontent.com/coelhocarlos/sqldump/master/MysqlDump.sh
+wget https://raw.githubusercontent.com/coelhocarlos/sqldump/master/mysqldump.sh
 wget https://raw.githubusercontent.com/coelhocarlos/DebianScripts/master/duck.sh
 chmod +x megasend.sh
-chmod +x MysqlDump.sh
+chmod +x mysqlmump.sh
 chmod +x duck.sh
 cd
 
