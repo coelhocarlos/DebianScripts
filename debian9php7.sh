@@ -19,8 +19,8 @@ echo install WEBMIN
 #in terminal server
 #----------------------------------------------------------------------
 apt-get update
-wget https://prdownloads.sourceforge.net/webadmin/webmin_1.881_all.deb
-dpkg --install webmin_1.881_all.deb
+wget https://prdownloads.sourceforge.net/webadmin/webmin_1.890_all.deb
+dpkg --install webmin_1.890_all.deb
 # on error fault -> libraries -> 
 apt-get install -f -y
 # on port error /etc/init.d/webmin restart
