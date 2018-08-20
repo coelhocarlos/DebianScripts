@@ -60,9 +60,9 @@ apt-get install mysql-server
     sudo mkdir -p /var/www/public
     
     sudo chown -R www-data:www-data
-    sudo chown -R $zombie:$zombie /var/www/html 
-    sudo chown -R $zombie:$zombie /var/www/server 
-    sudo chown -R $zombie:$zombie /var/www/public 
+    sudo chown -R zombie:zombie /var/www/html 
+    sudo chown -R zombie:zombie /var/www/server 
+    sudo chown -R zombie:zombie /var/www/public 
 
     sudo chmod -R 755 /var/www/html
     sudo chmod -R 755 /var/www/public
