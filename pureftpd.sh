@@ -14,7 +14,7 @@ pure-pw mkdb
 
 echo -e  '#!/bin/bash\nread -p "Enter UserName: " usrname\npure-pw useradd $usrname -u ftpusr -g ftpusr -d /home/FTP/$usrname && pure-pw mkdb'  > /usr/sbin/ftp-createacc
 chmod u+x /usr/sbin/ftp-createacc
-
+#pure-pw userdel joe
 # force TLS
 #echo 2 > /etc/pure-ftpd/conf/TLS
 
