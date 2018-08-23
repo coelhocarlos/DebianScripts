@@ -12,21 +12,7 @@
 #http://cdimage.debian.org/debian-cd/current/i386/iso-cd/debian-8.7.1-i386-netinst.iso
 #http://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso
 apt-get update && apt-get -y upgrade &&  apt-get -y dist-upgrade
-#
-echo install WEBMIN 
-#-----------------------------------------
 
-#in terminal server
-#----------------------------------------------------------------------
-apt-get update
-wget https://prdownloads.sourceforge.net/webadmin/webmin_1.890_all.deb
-dpkg --install webmin_1.890_all.deb
-# on error fault -> libraries -> 
-apt-get install -f -y
-# on port error /etc/init.d/webmin restart
-# editing /etc/webmin/miniserv.conf port 10000 to 10222
-nano /etc/webmin/miniserv.conf
-/etc/init.d/webmin restart
 
 
 echo THIRDY PHP MYSQL APACHE NMAP SAMBA
@@ -202,9 +188,26 @@ dpkg -i libssl1.0.0_1.0.1t-1+deb8u9_amd64.deb
 dpkg -i libssl1.0.0_1.0.2g-1ubuntu4.13_amd64.deb
 utserver -settingspath /opt/utorrent-server-alpha-v3_3/ &
 #--------------------------
-echo INIT AS SERVICE UTORRENT
-#--------------------
+echo INIT AS SERVICE UTORRENT#
+sudo sytemctl stop utorrent
 
+
+echo install WEBMIN 
+#-----------------------------------------
+
+#in terminal server
+#----------------------------------------------------------------------
+apt-get update
+wget https://prdownloads.sourceforge.net/webadmin/webmin_1.890_all.deb
+dpkg --install webmin_1.890_all.deb
+# on error fault -> libraries -> 
+apt-get install -f -y
+# on port error /etc/init.d/webmin restart
+# editing /etc/webmin/miniserv.conf port 10000 to 10222
+#nano /etc/webmin/miniserv.conf
+/etc/init.d/webmin restart
+#--------------------
+sudo sytemctl start utorrent
 
 wget https://raw.githubusercontent.com/coelhocarlos/debian9-install/master/utorrent
 chmod 755 utorrent
