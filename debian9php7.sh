@@ -76,12 +76,11 @@ apt-get install mysql-server
     sudo a2ensite default-ssl
     sudo systemctl restart apache2
 ###############PHP############################
-    sudo apt install -y php7.2 libapache2-mod-php7.2 wget
-    sudo apt-get -y install php7.2-mysql php7.2-curl php-fpm php7.2-gd php7.2-intl php-pear php-imagick php7.2-imap php-memcache  php7.2-pspell php7.2-recode php7.2-sqlite3 php7.2-tidy php7.2-xmlrpc php7.2-xsl php7.2-mbstring php-gettext
-    sudo wget http://archive.ubuntu.com/ubuntu/pool/universe/x/xdebug/php-xdebug_2.6.0-0ubuntu1_amd64.deb
-    sudo dpkg -i php-xdebug_2.6.0-0ubuntu1_amd64.deb
+    sudo apt install php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-curl php7.0-json 
+    php7.0-gd php7.0-mcrypt php7.0-intl php7.0-sqlite3 php7.0-gmp php7.0-mbstring php-xdebug 
+    php7.0-xml php7.0-zip
     sudo systemctl restart apache2 
-    sudo apt-get -y install php7.2-opcache php-apcu
+    sudo apt-get -y install php7.0-opcache php-apcu
     sudo systemctl restart apache2 
     sudo a2enmod ssl 
     sudo systemctl restart apache2
