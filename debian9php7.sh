@@ -336,10 +336,10 @@ iptables -F
    echo TEAMSPEAK3 SERVER
 #--------------------------
 	
-wget http://ftp.4players.de/pub/hosted/ts3/releases/3.0.10.3/teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
-tar xzf teamspeak3-server_linux-amd64-3.0.10.3.tar.gz
+wget http://ftp.4players.de/pub/hosted/ts3/releases/3.3.1/teamspeak3-server_linux_amd64-3.3.1.tar.bz2
+tar -jxvf teamspeak3-server_linux_amd64-3.3.1.tar.bz2
 adduser --disabled-login teamspeak3
-mv teamspeak3-server_linux-amd64 /usr/local/teamspeak3
+mv teamspeak3-server_linux_amd64 /usr/local/teamspeak3
 chown -R teamspeak3 /usr/local/teamspeak3
 ln -s /usr/local/teamspeak3/ts3server_startscript.sh /etc/init.d/teamspeak3
 update-rc.d teamspeak3 defaults
