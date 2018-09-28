@@ -228,8 +228,8 @@ echo END INSTALL UTORRENT
 #---
 
 #-------------------------------------- MEDIA SERVE PLEX
-wget https://downloads.plex.tv/plex-media-server/1.13.4.5251-2e6e8f841/plexmediaserver_1.13.4.5251-2e6e8f841_amd64.deb
-dpkg -i plexmediaserver_1.13.4.5251-2e6e8f841_amd64.deb
+wget https://downloads.plex.tv/plex-media-server/1.13.8.5395-10d48da0d/plexmediaserver_1.13.8.5395-10d48da0d_amd64.deb
+dpkg -i plexmediaserver_1.13.8.5395-10d48da0d_amd64.deb
 
 #GUACAMOLE
 ----------------------------------------
