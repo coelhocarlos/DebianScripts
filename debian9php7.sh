@@ -87,6 +87,8 @@ apt-get install iptraf-ng -y
 apt-get install net-tools -y
 #  recover images
 apt-get install testdisk  -y 
+#dns-utils
+apt-get install dnsutils
 # monitor your Server ---  Start $glances
 apt-get install glances -y 
 # git
