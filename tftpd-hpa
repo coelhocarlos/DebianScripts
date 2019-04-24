@@ -2,6 +2,6 @@
 # /etc/default/tftpd-hpa
 
 TFTP_USERNAME="tftp"
-TFTP_DIRECTORY="/media/hd2000/wds_share"
+TFTP_DIRECTORY="/home/zombie/Server/Share/tftp"
 TFTP_ADDRESS="0.0.0.0:69"
 TFTP_OPTIONS="--secure"
