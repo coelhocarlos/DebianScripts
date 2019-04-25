@@ -7,9 +7,13 @@ echo "yes" > /etc/pure-ftpd/conf/CreateHomeDir
 echo "yes" > /etc/pure-ftpd/conf/ChrootEveryone
 groupadd ftpusr
 useradd -g ftpusr -d /dev/null -s /etc ftpusr
-mkdir /home/ftp
-pure-pw useradd zombie -u ftpusr -g ftpusr -d /home/ftp/zombie
-pure-pw useradd ccstudio -u ftpusr -g ftpusr -d /media/hd2000/Manutencao
+
+useradd -d /home/zombie/Server/Public_ftp -s /sbin/nologin ftp
+mkdir /home/zombie/Server/Public_ftp
+
+pure-pw useradd ccstudio -u ftpusr -g ftpusr -d /home/zombie/Server/Downloads
+mkdir /home/zombie/Server/Studio_ftp
+
 pure-pw mkdb
 
 echo -e  '#!/bin/bash\nread -p "Enter UserName: " usrname\npure-pw useradd $usrname -u ftpusr -g ftpusr -d /home/FTP/$usrname && pure-pw mkdb'  > /usr/sbin/ftp-createacc
