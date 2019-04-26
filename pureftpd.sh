@@ -8,10 +8,10 @@ echo "yes" > /etc/pure-ftpd/conf/ChrootEveryone
 groupadd ftpusr
 useradd -g ftpusr -d /dev/null -s /etc ftpusr
 
-useradd -d /home/zombie/Server/Public_ftp -s /sbin/nologin ftp
+useradd -d /home/zombie/Server/public_ftp -s /sbin/nologin ftp
 mkdir /home/zombie/Server/Public_ftp
 
-pure-pw useradd ccstudio -u ftpusr -g ftpusr -d /home/zombie/Server/Downloads
+pure-pw useradd ccstudio -u ftpusr -g ftpusr -d /home/zombie/Server/ccstudio_ftp
 mkdir /home/zombie/Server/Studio_ftp
 
 pure-pw mkdb
