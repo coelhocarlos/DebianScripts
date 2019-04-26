@@ -34,4 +34,5 @@ echo "40110 42210" > /etc/pure-ftpd/conf/PassivePortRange
 systemctl restart pure-ftpd
 iptables -A INPUT -p tcp --dport 40110 --jump ACCEPT
 iptables -A INPUT -p tcp --dport 42210 --jump ACCEPT
-iptables-save
+iptables-save > /etc/webmin/firewall/iptables-save
+iptables-restore < /etc/webmin/firewall/iptables-save
