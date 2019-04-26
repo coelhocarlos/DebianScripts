@@ -5,18 +5,19 @@ echo no > /etc/pure-ftpd/conf/PAMAuthentication
 echo no > /etc/pure-ftpd/conf/UnixAuthentication
 echo "yes" > /etc/pure-ftpd/conf/CreateHomeDir
 echo "yes" > /etc/pure-ftpd/conf/ChrootEveryone
-groupadd ftpusr
-useradd -g ftpusr -d /dev/null -s /etc ftpusr
+
+groupadd FTPUSR
+useradd -g FTPUSR -d /dev/null -s /etc FTPUSR
 
 useradd -d /home/zombie/Server/public_ftp -s /sbin/nologin ftp
-mkdir /home/zombie/Server/Public_ftp
+mkdir /home/zombie/Server/public_ftp
 
-pure-pw useradd ccstudio -u ftpusr -g ftpusr -d /home/zombie/Server/ccstudio_ftp
-mkdir /home/zombie/Server/Studio_ftp
+pure-pw useradd ccstudio -u FTPUSR -g FTPUSR -d /home/zombie/Server/ccstudio_ftp
+mkdir /home/zombie/Server/ccstudio_ftp
 
 pure-pw mkdb
 
-echo -e  '#!/bin/bash\nread -p "Enter UserName: " usrname\npure-pw useradd $usrname -u ftpusr -g ftpusr -d /home/FTP/$usrname && pure-pw mkdb'  > /usr/sbin/ftp-createacc
+echo -e  '#!/bin/bash\nread -p "Enter UserName: " usrname\npure-pw useradd $usrname -u ftpusr -g ftpusr -d /home/zombie/ccstudio_ftp/$usrname && pure-pw mkdb'  > /usr/sbin/ftp-createacc
 chmod u+x /usr/sbin/ftp-createacc
 #pure-pw userdel joe
 # force TLS
