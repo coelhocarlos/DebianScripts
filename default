@@ -32,34 +32,31 @@ LABEL Centos-7.0-x86_64
 	KERNEL images/centos/7.0/x86_64/vmlinuz
 	APPEND initrd=images/centos/7.0/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.repo=http://centos.serverspace.co.uk/centos/7/os/x86_64
 
-LABEL Fedora-24-x86_64
-	MENU LABEL Install Fedora 24 x86_64
-	KERNEL images/fedora/24/x86_64/vmlinuz
-	APPEND initrd=images/fedora/24/x86_64/initrd.img ramdisk_size=100000 ip=dhcp inst.stage2=http://mirrorservice.org/sites/dl.fedoraproject.org/pub/fedora/linux/releases/24/Everything/x86_64/os/
 
-LABEL Debian-24-x86_64
-	MENU LABEL Install Debian x86_64
-	KERNEL images/debian/x86_64/linux
-	APPEND initrd=images/debian/x86_64/initrd.gz ramdisk_size=100000 ip=dhcp inst.stage2=http://ftp.br.debian.org/debian/dists/Debian9.4/
+LABEL Debian
+  MENU LABEL install Debian Net Install
+  LINUX  /memdisk
+  INITRD /images/linux/debian/debian-9.9.0-amd64-netinst
+  APPEND iso raw
 
-MENU UBUNTU
+
 LABEL run ubuntu-live
   MENU LABEL run Ubuntu 19.04
   LINUX  /memdisk
   INITRD /images/linux/ubuntu-live/mini.iso
   APPEND iso raw
   
-  MENU KALI
-    MENU LABEL Install Debian x86_64
-	KERNEL images/linux/kali/linux
-	APPEND initrd=images/linux/kali/initrd.gz ramdisk_size=100000 fetch=http://192.168.0.50/images/linux/kali/filesystem.squashfs
-
+LABEL Kalli
+ MENU LABEL Run kalli Linux
+  KERNEL /images/linux/kali/live/vmlinuz
+  INITRD /images/linux/kali/liveinitrd.img boot=live config components union=overlay username=user noswap noeject ip= vga=788 fetch=tftp://192.168.0.50/images/linux/kali/live/filesystem.squashfs
+  APPEND iso raw
   
 MENU SEPARATOR
 LABEL GHOST
   MENU LABEL Start Northon Ghost Live
   LINUX  /memdisk
-  INITRD /images/utils/ghost/Symantec.Ghost.11.5.Corporate.DOS.Boot.CD.iso
+  INITRD /images/utils/ghost/Norton.Ghost.11.5.Corporate.DOS.Boot.CD.iso
   APPEND iso raw
   
   LABEL AVG
@@ -82,13 +79,13 @@ LABEL GHOST
 
 LABEL CLONEZILLA
     MENU LABEL Start Clonezilla live
-    KERNEL images/utils/clonezilla/vmlinuz
-    APPEND initrd=/images/utils/clonezilla/initrd.img boot=live username=user union=overlay components noswap noprompt vga=788 keyboard-layouts=en locales=en_GB.UTF-8 fetch=tftp://192.168.0.50/images/clonezilla/filesystem.squashfs
+    KERNEL images/utils/clonezilla/live/vmlinuz
+    APPEND initrd=/images/utils/clonezilla/live/initrd.img boot=live username=user union=overlay components noswap noprompt vga=788 keyboard-layouts=en locales=en_GB.UTF-8 fetch=tftp://192.168.0.50/images/utils/clonezilla/live/filesystem.squashfs
 
 LABEL PARTMAGIC
 MENU LABEL Start Partiton Magic
 LINUX  /memdisk
-INITRD /images/utils/pmagic/pmagic_2018_01_08.iso load_ramdisk=1 prompt_ramdisk=0 rw sleep=10
+INITRD /images/utils/pmagic/pmagic_2018_08_06 load_ramdisk=1 prompt_ramdisk=0 rw sleep=10
 APPEND iso raw
 
 LABEL GParted
